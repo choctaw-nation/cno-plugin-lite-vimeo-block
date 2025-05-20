@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cno-lite-vimeo/cno-plugin-lite-vimeo-block",
+	"version": "0.1.0",
+	"title": "CNO Lite Vimeo Block",
+	"category": "embed",
+	"icon": "video-alt3",
+	"description": "A block that uses lite-vimeo ",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "cno-plugin-lite-vimeo-block",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}
