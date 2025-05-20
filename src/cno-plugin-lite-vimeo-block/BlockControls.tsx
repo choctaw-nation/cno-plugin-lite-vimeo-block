@@ -37,6 +37,7 @@ export default function BlockControls( {
 						onChange={ ( value ) =>
 							setAttributes( { videoID: value } )
 						}
+						autoComplete="off"
 						help="The ID of the Vimeo video to embed. If unlisted, the pattern should be “###/###”"
 						required={ true }
 					/>
@@ -49,6 +50,7 @@ export default function BlockControls( {
 						onChange={ ( value ) =>
 							setAttributes( { isUnlisted: value } )
 						}
+						help="If the video is unlisted, toggle this option to enable extra parameters to help the video facade look correct."
 					/>
 				</PanelRow>
 				<PanelRow>
@@ -84,6 +86,7 @@ export default function BlockControls( {
 						onChange={ ( value ) =>
 							setAttributes( { enableTracking: value } )
 						}
+						help="Whether to enable tracking."
 					/>
 				</PanelRow>
 				<PanelRow>
@@ -94,6 +97,7 @@ export default function BlockControls( {
 						onChange={ ( value ) =>
 							setAttributes( { loop: value } )
 						}
+						help="Whether to loop the video."
 					/>
 				</PanelRow>
 			</PanelBody>
