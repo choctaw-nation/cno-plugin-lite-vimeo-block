@@ -29,14 +29,32 @@ registerBlockType( block.name, {
 					setAttributes={ setAttributes }
 				/>
 				<div { ...useBlockProps() }>
-					<lite-vimeo
-						videoid={ videoID }
-						autoload={ autoload }
-						autoplay={ autoplay }
-						loop={ loop }
-						isUnlisted={ isUnlisted }
-						enableTracking={ enableTracking }
-					/>
+					{ videoID ? (
+						<lite-vimeo
+							videoid={ videoID }
+							autoload={ autoload }
+							autoplay={ autoplay }
+							loop={ loop }
+							isUnlisted={ isUnlisted }
+							enableTracking={ enableTracking }
+						/>
+					) : (
+						<div
+							style={ {
+								aspectRatio: '16/9',
+								border: '2px solid red',
+								backgroundColor: 'rgba( 255, 0, 0, 0.5 )',
+								alignContent: 'center',
+							} }
+						>
+							<p style={ { textAlign: 'center', fontSize: 40 } }>
+								CNO Lite Vimeo Block
+							</p>
+							<p style={ { textAlign: 'center', fontSize: 20 } }>
+								Video ID is required.
+							</p>
+						</div>
+					) }
 				</div>
 			</>
 		);
@@ -52,14 +70,16 @@ registerBlockType( block.name, {
 		} = parseArgs( attributes );
 		return (
 			<div { ...useBlockProps.save() }>
-				<lite-vimeo
-					videoid={ videoID }
-					autoload={ autoload }
-					autoplay={ autoplay }
-					loop={ loop }
-					isUnlisted={ isUnlisted }
-					enableTracking={ enableTracking }
-				/>
+				{ videoID && (
+					<lite-vimeo
+						videoid={ videoID }
+						autoload={ autoload }
+						autoplay={ autoplay }
+						loop={ loop }
+						isUnlisted={ isUnlisted }
+						enableTracking={ enableTracking }
+					/>
+				) }
 			</div>
 		);
 	},
