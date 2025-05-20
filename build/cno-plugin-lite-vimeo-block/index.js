@@ -1,0 +1,877 @@
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./node_modules/@wordpress/icons/build-module/library/video.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@wordpress/icons/build-module/library/video.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/primitives */ "@wordpress/primitives");
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+/**
+ * WordPress dependencies
+ */
+
+
+const video = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__.SVG, {
+  viewBox: "0 0 24 24",
+  xmlns: "http://www.w3.org/2000/svg",
+  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__.Path, {
+    d: "M18.7 3H5.3C4 3 3 4 3 5.3v13.4C3 20 4 21 5.3 21h13.4c1.3 0 2.3-1 2.3-2.3V5.3C21 4 20 3 18.7 3zm.8 15.7c0 .4-.4.8-.8.8H5.3c-.4 0-.8-.4-.8-.8V5.3c0-.4.4-.8.8-.8h13.4c.4 0 .8.4.8.8v13.4zM10 15l5-3-5-3v6z"
+  })
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (video);
+//# sourceMappingURL=video.js.map
+
+/***/ }),
+
+/***/ "./src/cno-plugin-lite-vimeo-block/BlockControls.tsx":
+/*!***********************************************************!*\
+  !*** ./src/cno-plugin-lite-vimeo-block/BlockControls.tsx ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ BlockControls)
+/* harmony export */ });
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+/**
+ * Inspector Controls for the Swiper block.
+ */
+
+function BlockControls({
+  attributes,
+  setAttributes
+}) {
+  const {
+    autoplay,
+    videoID,
+    isUnlisted,
+    autoload,
+    enableTracking,
+    loop,
+    customThumbnailURL
+  } = attributes;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+      title: "Lite Vimeo Settings",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelRow, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+          label: "Video ID",
+          value: videoID,
+          __nextHasNoMarginBottom: true,
+          onChange: value => setAttributes({
+            videoID: value
+          }),
+          help: "The ID of the Vimeo video to embed. If unlisted, the pattern should be \u201C###/###\u201D",
+          required: true
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelRow, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+          label: "Unlisted",
+          checked: isUnlisted,
+          __nextHasNoMarginBottom: true,
+          onChange: value => setAttributes({
+            isUnlisted: value
+          })
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelRow, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+          label: "Autoload",
+          checked: autoload,
+          __nextHasNoMarginBottom: true,
+          onChange: value => setAttributes({
+            autoload: value
+          }),
+          help: "Waits to load the video until it is scrolled into view. Can help with performance, and also can cause bugs. Use with caution."
+        })
+      }), autoplay && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelRow, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+          label: "Autoplay",
+          checked: autoplay,
+          __nextHasNoMarginBottom: true,
+          onChange: value => setAttributes({
+            autoplay: value
+          }),
+          help: "Whether to autoplay the video."
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelRow, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+          label: "Enable Tracking",
+          checked: enableTracking,
+          __nextHasNoMarginBottom: true,
+          onChange: value => setAttributes({
+            enableTracking: value
+          })
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelRow, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+          label: "Loop",
+          checked: loop,
+          __nextHasNoMarginBottom: true,
+          onChange: value => setAttributes({
+            loop: value
+          })
+        })
+      })]
+    })
+  });
+}
+
+/***/ }),
+
+/***/ "./src/cno-plugin-lite-vimeo-block/block.json":
+/*!****************************************************!*\
+  !*** ./src/cno-plugin-lite-vimeo-block/block.json ***!
+  \****************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"cno-lite-vimeo/cno-plugin-lite-vimeo-block","version":"0.1.0","title":"CNO Lite Vimeo Block","category":"embed","icon":"video-alt3","description":"A block that uses lite-vimeo ","example":{},"supports":{"html":false,"align":true,"dimensions":{"minHeight":true},"customClassName":true,"spacing":{"margin":["top","bottom"]}},"attributes":{"isUnlisted":{"type":"boolean","default":false},"customThumbnailURL":{"type":"string","default":""},"videoID":{"type":"string","default":"","required":true},"videoTitle":{"type":"string","default":""},"autoload":{"type":"boolean","default":false},"autoplay":{"type":"boolean","default":false},"loop":{"type":"boolean","default":false},"enableTracking":{"type":"boolean","default":true}},"script":"file:./script.js","editorScript":"file:./index.js"}');
+
+/***/ }),
+
+/***/ "./src/cno-plugin-lite-vimeo-block/script.js":
+/*!***************************************************!*\
+  !*** ./src/cno-plugin-lite-vimeo-block/script.js ***!
+  \***************************************************/
+/***/ (() => {
+
+/**
+ * Handles the properties for the lite-vimeo component
+ */class $bf0d59a2e36aadbf$export$2e2bcd8739ae039 extends HTMLElement {
+  /**
+   * The Shadow DOM Root
+   *
+   * @type {ShadowRoot}
+   */
+  shadowRoot;
+  /**
+   * Whether the iframe has been loaded
+   * @type {boolean}
+   */
+  iframeLoaded = false;
+  /**
+   * The `div#frame` of the shadowDOM that the iframe will be inserted into
+   *
+   * @type {HTMLDivElement}
+   */
+  domRefFrame;
+  /**
+   * The `img` elements of the shadowDOM that will be used as placeholders
+   * @type {{fallback: HTMLImageElement, webp: HTMLSourceElement, jpeg: HTMLSourceElement}}
+   */
+  domRefImg;
+  /**
+   * The play button element
+   * @type {HTMLButtonElement}
+   */
+  domRefPlayButton;
+  /**
+   * The private hash for unlisted videos
+   *
+   * @type {string|undefined}
+   */
+  hash = undefined;
+  /**
+   * Whether the Vimeo assets have been preconnected
+   *
+   * @type {boolean}
+   */
+  static preconnected = false;
+  constructor() {
+    super();
+  }
+  static get observedAttributes() {
+    return ['videoid'];
+  }
+  get isUnlisted() {
+    return this.hasAttribute('unlisted');
+  }
+  get enableTracking() {
+    return this.hasAttribute('enabletracking');
+  }
+  get hasCustomPlaceholder() {
+    return this.hasAttribute('customplaceholder');
+  }
+  get customPlaceholder() {
+    return this.getAttribute('customplaceholder') || '';
+  }
+  get videoId() {
+    const videoId = this.getAttribute('videoid');
+    if (!videoId) return '';
+    if (this.isUnlisted) {
+      const [vimeoId, privateHash] = videoId.split('/');
+      this.hash = privateHash;
+      return vimeoId;
+    }
+    return videoId;
+  }
+  get loop() {
+    return this.hasAttribute('loop');
+  }
+  /**
+   * Set the video ID
+   * @param {string} id
+   */
+  set videoId(id) {
+    this.setAttribute('videoid', id);
+  }
+  get videoPlay() {
+    return this.getAttribute('videoplay') || 'Play';
+  }
+  /**
+   * Alters the "Play" button text
+   * @param {string} name
+   */
+  set videoPlay(name) {
+    this.setAttribute('videoplay', name);
+  }
+  /**
+   * Get the title of the video
+   * @returns {string} the video title or "Video"
+   */
+  get videoTitle() {
+    return this.getAttribute('videotitle') || 'Video';
+  }
+  /**
+   * Set the title of the video
+   *
+   * @param {string} title the title of the video
+   */
+  set videoTitle(title) {
+    this.setAttribute('videotitle', title);
+  }
+  /**
+   * Get the start time of the video
+   * @returns {string} the start time or "0s"
+   */
+  get videoStartAt() {
+    return this.getAttribute('start');
+  }
+  /**
+   * Set the start time of the video
+   * @param {string} time the start time of the video
+   */
+  set videoStartAt(time) {
+    this.setAttribute('start', time);
+  }
+  /**
+   * Get the autoLoad property
+   * @returns {boolean} the autoLoad property
+   */
+  get autoLoad() {
+    return this.hasAttribute('autoload');
+  }
+  /**
+   * Alters the autoLoad property
+   *
+   * @param {boolean} value
+   */
+  set autoLoad(value) {
+    if (value) this.setAttribute('autoload', '');else this.removeAttribute('autoload');
+  }
+  /**
+   * Get the autoPlay property
+   *
+   * @returns {boolean} the autoPlay property
+   */
+  get autoPlay() {
+    return this.hasAttribute('autoplay');
+  }
+  /**
+   * Alters the autoPlay property
+   *
+   * @param {boolean} value
+   */
+  set autoPlay(value) {
+    if (value) this.setAttribute('autoplay', 'autoplay');else this.removeAttribute('autoplay');
+  }
+}
+class $30679d0190398326$export$2e2bcd8739ae039 extends (0, $bf0d59a2e36aadbf$export$2e2bcd8739ae039) {
+  constructor() {
+    super();
+  }
+  /**
+   * Add CSS to ShadowDOM Element
+   *
+   * @returns {string} the CSS
+   */
+  addStyles() {
+    const styles = `<style>
+        :host {
+          contain: content;
+          display: block;
+          position: relative;
+          width: 100%;
+          aspect-ratio:16 / 9;
+        }
+
+        #frame, #fallbackPlaceholder, iframe, #custom-placeholder {
+        	position: absolute;
+        	height:100%;
+        	width:100%;
+			inset-inline-start: 0;
+			inset-block-start: 0;
+        }
+
+        #frame {
+        	cursor: pointer;
+        }
+		
+		#fallbackPlaceholder, #custom-placeholder {
+			object-fit: cover;
+		}
+
+	    #frame::before {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			${this.hasCustomPlaceholder ? '' : 'background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAADGCAYAAAAT+OqFAAAAdklEQVQoz42QQQ7AIAgEF/T/D+kbq/RWAlnQyyazA4aoAB4FsBSA/bFjuF1EOL7VbrIrBuusmrt4ZZORfb6ehbWdnRHEIiITaEUKa5EJqUakRSaEYBJSCY2dEstQY7AuxahwXFrvZmWl2rh4JZ07z9dLtesfNj5q0FU3A5ObbwAAAABJRU5ErkJggg==);'}
+			background-position: top;
+			height: 60px;
+			padding-bottom: 50px;
+			width: 100%;
+			transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+			z-index: 1;
+	  	}
+	
+	  	/* play button */
+	  	.lvo-playbtn {
+			width: 70px;
+			height: 46px;
+			background-color: #212121;
+			z-index: 1;
+			opacity: 0.8;
+			border-radius: 10%;
+			transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+			border: 0;
+	  	}
+		
+		#frame:hover .lvo-playbtn {
+			background-color: rgb(98, 175, 237);
+			opacity: 1;
+			cursor: pointer;
+		}
+		
+		/* play button triangle */
+		.lvo-playbtn::before {
+			content: '';
+			border-style: solid;
+			border-width: 11px 0 11px 19px;
+			border-color: transparent transparent transparent #fff;
+		}
+
+		.lvo-playbtn,
+		.lvo-playbtn::before {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate3d(-50%, -50%, 0);
+		}
+
+		/* Post-click styles */
+		.lvo-activated {
+			cursor: unset;
+		}
+
+		#frame.lvo-activated::before,
+		.lvo-activated .lvo-playbtn,
+		.lvo-activated picture {
+			display: none;
+		}
+    	</style>`;
+    return styles;
+  }
+  /**
+   * Adds the video placeholder image to the shadowDOM player
+   * Conditionally renders the play button if a custom placeholder is provided
+   *
+   * @returns {string} the HTML
+   */
+  addPictureElement() {
+    const picture = `
+		<div id="frame">
+		<picture>
+        	${this.hasCustomPlaceholder ? `<img id="custom-placeholder"
+				src="${this.customPlaceholder}"
+				decoding="async"
+				loading="lazy" />` : `
+				<source id="webpPlaceholder" type="image/webp">
+				<source id="jpegPlaceholder" type="image/jpeg">
+				<img id="fallbackPlaceholder"
+					referrerpolicy="origin"
+					width="1100"
+					height="619"
+					decoding="async"
+					loading="lazy"
+				/>
+	  			`}
+		</picture>
+		<button class="lvo-playbtn"></button>
+      	</div>`;
+    return picture;
+  }
+}
+
+/**
+ * Final Class
+ * Sets up the component
+ *
+ * @link https://github.com/slightlyoff/lite-vimeo
+ */
+class $82cbb5a2f3a1bcd0$var$LiteVimeo extends (0, $30679d0190398326$export$2e2bcd8739ae039) {
+  constructor() {
+    super();
+    this.setupDom();
+  }
+  /**
+   * Define our shadowDOM for the component
+   */
+  setupDom() {
+    if (!this.shadowRoot) this.shadowRoot = this.attachShadow({
+      mode: 'open'
+    });else this.shadowRoot.innerHTML = '';
+    this.shadowRoot.innerHTML = this.addStyles() + this.addPictureElement();
+    this.domRefFrame = this.shadowRoot.querySelector('#frame');
+    this.domRefImg = {
+      fallback: this.shadowRoot.querySelector('#fallbackPlaceholder'),
+      webp: this.shadowRoot.querySelector('#webpPlaceholder'),
+      jpeg: this.shadowRoot.querySelector('#jpegPlaceholder')
+    };
+    this.domRefPlayButton = this.shadowRoot.querySelector('.lvo-playbtn');
+  }
+  connectedCallback() {
+    if (!this.shadowRoot) this.shadowRoot = this.attachShadow({
+      mode: 'open'
+    });
+    this.addEventListener('pointerover', $82cbb5a2f3a1bcd0$var$LiteVimeo.warmConnections, {
+      once: true
+    });
+    this.addEventListener('click', () => this.addIframe());
+  }
+  /**
+   * Inject the iframe into the component body
+   */
+  addIframe() {
+    if (!this.iframeLoaded) {
+      const queryParams = this.getIFrameParams();
+      const url = `/video/${this.videoId}${this.isUnlisted ? `?h=${this.hash}&${queryParams}` : `?${queryParams}`}`;
+      const srcUrl = new URL(url, 'https://player.vimeo.com/');
+      const iframeHTML = `
+			<iframe frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope" allowfullscreen autoplay="true" ${this.autoPlay ? `muted="true"` : ''} src="${srcUrl}"></iframe>`;
+      this.domRefFrame.insertAdjacentHTML('beforeend', iframeHTML);
+      this.domRefFrame.classList.add('lvo-activated');
+      this.iframeLoaded = true;
+    }
+  }
+  /**
+   * Gets the Vimeo iFrame src parameters
+   *
+   * @returns {string} the iframe parameters
+   */
+  getIFrameParams() {
+    let params = 'hd=1&autohide=1&autoplay=1';
+    params += this.loop ? '&loop=1' : '';
+    params += this.enableTracking ? '' : '&dnt=1';
+    params += this.autoPlay ? '&muted=1' : '';
+    params += this.videoStartAt ? `&#t=${this.videoStartAt}` : '';
+    return params;
+  }
+  /**
+   * Parse our attributes and fire up some placeholders
+   */
+  setupComponent() {
+    this.initImagePlaceholder();
+    this.setAttribute('title', `${this.videoPlay}: ${this.videoTitle}`);
+    this.domRefPlayButton.setAttribute('aria-label', `${this.videoPlay}: ${this.videoTitle}`);
+    if (this.autoLoad) this.initIntersectionObserver();
+  }
+  /**
+   * Lifecycle method that we use to listen for attribute changes to period
+   *
+   * @param {string} name
+   * @param {unknown} oldVal
+   * @param {unknown} newVal
+   *
+   * @returns {void}
+   */
+  attributeChangedCallback(name, oldVal, newVal) {
+    switch (name) {
+      case 'videoid':
+        if (oldVal !== newVal) {
+          this.setupComponent();
+          // if we have a previous iframe, remove it and the activated class
+          if (this.domRefFrame.classList.contains('lvo-activated')) {
+            this.domRefFrame.classList.remove('lvo-activated');
+            this.shadowRoot?.querySelector('iframe').remove();
+          }
+        }
+        break;
+      default:
+        break;
+    }
+  }
+  /**
+   * Setup the Intersection Observer to load the iframe when scrolled into view
+   *
+   * @returns {void}
+   */
+  initIntersectionObserver() {
+    if ('IntersectionObserver' in window && 'IntersectionObserverEntry' in window) {
+      const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0
+      };
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !this.iframeLoaded) {
+            $82cbb5a2f3a1bcd0$var$LiteVimeo.warmConnections();
+            this.addIframe();
+            observer.unobserve(this);
+          }
+        });
+      }, options);
+      observer.observe(this);
+    }
+  }
+  /**
+   * Setup the placeholder image for the component
+   *
+   * @returns {Promise<any>|void}
+   */
+  initImagePlaceholder = async () => {
+    if (this.isUnlisted) return;
+    // we don't know which image type to preload, so warm the connection
+    $82cbb5a2f3a1bcd0$var$LiteVimeo.preconnected || $82cbb5a2f3a1bcd0$var$LiteVimeo.addPrefetch('preconnect', 'https://i.vimeocdn.com/');
+    const apiUrl = `https://vimeo.com/api/v2/video/${this.videoId}.json`;
+    const apiResponse = (await (await fetch(apiUrl)).json())[0];
+    const tnLarge = apiResponse.thumbnail_large;
+    const imgId = tnLarge.substr(tnLarge.lastIndexOf('/') + 1).split('_')[0];
+    const posterUrlWebp = `https://i.vimeocdn.com/video/${imgId}.webp?mw=1100&mh=619&q=70`;
+    const posterUrlJpeg = `https://i.vimeocdn.com/video/${imgId}.jpg?mw=1100&mh=619&q=70`;
+    this.domRefImg.webp.srcset = posterUrlWebp;
+    this.domRefImg.jpeg.srcset = posterUrlJpeg;
+    this.domRefImg.fallback.src = posterUrlJpeg;
+    this.domRefImg.fallback.setAttribute('aria-label', `${this.videoPlay}: ${this.videoTitle}`);
+    this.domRefImg.fallback.setAttribute('alt', `${this.videoPlay}: ${this.videoTitle}`);
+  };
+  /**
+   * Add a <link rel={preload | preconnect} ...> to the head
+   * @param {string} kind the kind of link to add
+   * @param {string} url the source URL
+   * @param {?string} as the "as" attribute
+   *
+   * @returns {void}
+   */
+  static addPrefetch(kind, url, as = null) {
+    const linkElem = document.createElement('link');
+    linkElem.rel = kind;
+    linkElem.href = url;
+    if (as) linkElem.as = as;
+    linkElem.crossOrigin = 'true';
+    document.head.append(linkElem);
+  }
+  /**
+   * Begin preconnecting to warm up the iframe load Since the embed's network
+   * requests load within its iframe, preload/prefetch'ing them outside the
+   * iframe will only cause double-downloads. So, the best we can do is warm up
+   * a few connections to origins that are in the critical path.
+   *
+   * Maybe `<link rel=preload as=document>` would work, but it's unsupported:
+   * http://crbug.com/593267 But TBH, I don't think it'll happen soon with Site
+   * Isolation and split caches adding serious complexity.
+   *
+   * @returns {void}
+   */
+  static warmConnections() {
+    if ($82cbb5a2f3a1bcd0$var$LiteVimeo.preconnected) return;
+    const vimeoAssets = {
+      preconnect: ['https://f.vimeocdn.com', 'https://player.vimeo.com', 'https://i.vimeocdn.com']
+    };
+    Object.entries(vimeoAssets).forEach(([kind, urls]) => {
+      urls.forEach(url => $82cbb5a2f3a1bcd0$var$LiteVimeo.addPrefetch(kind, url));
+    });
+    $82cbb5a2f3a1bcd0$var$LiteVimeo.preconnected = true;
+  }
+}
+try {
+  customElements.define('lite-vimeo', $82cbb5a2f3a1bcd0$var$LiteVimeo);
+  $82cbb5a2f3a1bcd0$exports = $82cbb5a2f3a1bcd0$var$LiteVimeo;
+} catch (e) {
+  console.error(e);
+}
+
+// export {$82cbb5a2f3a1bcd0$exports as default};
+
+/***/ }),
+
+/***/ "@wordpress/block-editor":
+/*!*************************************!*\
+  !*** external ["wp","blockEditor"] ***!
+  \*************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["blockEditor"];
+
+/***/ }),
+
+/***/ "@wordpress/blocks":
+/*!********************************!*\
+  !*** external ["wp","blocks"] ***!
+  \********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["blocks"];
+
+/***/ }),
+
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["components"];
+
+/***/ }),
+
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["element"];
+
+/***/ }),
+
+/***/ "@wordpress/primitives":
+/*!************************************!*\
+  !*** external ["wp","primitives"] ***!
+  \************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["primitives"];
+
+/***/ }),
+
+/***/ "react/jsx-runtime":
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["ReactJSXRuntime"];
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
+(() => {
+"use strict";
+/*!***************************************************!*\
+  !*** ./src/cno-plugin-lite-vimeo-block/index.tsx ***!
+  \***************************************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/video.js");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _script_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./script.js */ "./src/cno-plugin-lite-vimeo-block/script.js");
+/* harmony import */ var _script_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_script_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/cno-plugin-lite-vimeo-block/block.json");
+/* harmony import */ var _BlockControls__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./BlockControls */ "./src/cno-plugin-lite-vimeo-block/BlockControls.tsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
+
+
+
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
+  icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__["default"],
+  edit: ({
+    attributes,
+    setAttributes
+  }) => {
+    const {
+      videoID,
+      enableTracking,
+      autoload,
+      autoplay,
+      loop,
+      isUnlisted
+    } = parseArgs(attributes);
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_BlockControls__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        attributes: attributes,
+        setAttributes: setAttributes
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+        ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(),
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("lite-vimeo", {
+          videoid: videoID,
+          autoload: autoload,
+          autoplay: autoplay,
+          loop: loop,
+          isUnlisted: isUnlisted,
+          enableTracking: enableTracking
+        })
+      })]
+    });
+  },
+  save: ({
+    attributes
+  }) => {
+    const {
+      videoID,
+      enableTracking,
+      autoload,
+      autoplay,
+      loop,
+      isUnlisted
+    } = parseArgs(attributes);
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save(),
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("lite-vimeo", {
+        videoid: videoID,
+        autoload: autoload,
+        autoplay: autoplay,
+        loop: loop,
+        isUnlisted: isUnlisted,
+        enableTracking: enableTracking
+      })
+    });
+  }
+});
+function parseArgs(attributes) {
+  const {
+    videoID,
+    enableTracking,
+    autoload,
+    autoplay,
+    loop,
+    isUnlisted,
+    videoTitle,
+    customThumbnailURL
+  } = attributes;
+  return {
+    videoID,
+    autoload,
+    autoplay: autoload && autoplay ? true : undefined,
+    loop: loop ? true : undefined,
+    isUnlisted,
+    videoTitle,
+    customThumbnailURL: isUnlisted && customThumbnailURL !== '' ? customThumbnailURL : undefined,
+    enableTracking
+  };
+}
+})();
+
+/******/ })()
+;
+//# sourceMappingURL=index.js.map
