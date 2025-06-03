@@ -21,14 +21,10 @@
 		"cno-plugin-lite-vimeo-block.php"
 	],
 	"devDependencies": {
-<<<<<<< HEAD
-		"@wordpress/scripts": "^30.17.0"
-=======
 		"@wordpress/block-editor": "^14.18.0",
 		"@wordpress/blocks": "^14.12.0",
 		"@wordpress/icons": "^10.23.0",
-		"@wordpress/scripts": "^30.16.0"
->>>>>>> origin/init-block
+		"@wordpress/scripts": "^30.17.0"
 	},
 	"dependencies": {
 		"@choctawnationofoklahoma/lite-vimeo": "^1.2.2"
