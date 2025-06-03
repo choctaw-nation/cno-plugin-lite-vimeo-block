@@ -9,11 +9,51 @@
 	"description": "A block that uses lite-vimeo ",
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"align": true,
+		"dimensions": {
+			"minHeight": true
+		},
+		"customClassName": true,
+		"spacing": {
+			"margin": [ "top", "bottom" ]
+		}
 	},
-	"textdomain": "cno-plugin-lite-vimeo-block",
-	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
-	"viewScript": "file:./view.js"
+	"attributes": {
+		"isUnlisted": {
+			"type": "boolean",
+			"default": false
+		},
+		"customThumbnailURL": {
+			"type": "string",
+			"default": ""
+		},
+		"videoID": {
+			"type": "string",
+			"default": "",
+			"required": true
+		},
+		"videoTitle": {
+			"type": "string",
+			"default": ""
+		},
+		"autoload": {
+			"type": "boolean",
+			"default": false
+		},
+		"autoplay": {
+			"type": "boolean",
+			"default": false
+		},
+		"loop": {
+			"type": "boolean",
+			"default": false
+		},
+		"enableTracking": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"script": "file:./script.js",
+	"editorScript": "file:./index.js"
 }
