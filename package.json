@@ -1,6 +1,6 @@
 {
 	"name": "cno-plugin-lite-vimeo-block",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "A block that uses lite-vimeo ",
 	"author": "Choctaw Nation of Oklahoma",
 	"license": "GPL-2.0-or-later",
@@ -16,7 +16,7 @@
 		"start": "wp-scripts start --blocks-manifest"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^30.16.0"
+		"@wordpress/scripts": "^30.17.0"
 	},
 	"dependencies": {
 		"@choctawnationofoklahoma/lite-vimeo": "^1.2.2"
