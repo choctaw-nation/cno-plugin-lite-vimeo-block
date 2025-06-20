@@ -1,6 +1,6 @@
 {
 	"name": "cno-plugin-lite-vimeo-block",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "A block that uses lite-vimeo ",
 	"author": "Choctaw Nation of Oklahoma",
 	"prettier": "@wordpress/prettier-config",
@@ -21,10 +21,10 @@
 		"cno-plugin-lite-vimeo-block.php"
 	],
 	"devDependencies": {
-		"@wordpress/block-editor": "^14.18.0",
-		"@wordpress/blocks": "^14.12.0",
-		"@wordpress/icons": "^10.23.0",
-		"@wordpress/scripts": "^30.17.0"
+		"@wordpress/block-editor": "^14.20.0",
+		"@wordpress/blocks": "^14.14.0",
+		"@wordpress/icons": "^10.25.0",
+		"@wordpress/scripts": "^30.18.0"
 	},
 	"dependencies": {
 		"@choctawnationofoklahoma/lite-vimeo": "^1.2.2"
