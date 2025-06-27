@@ -54,6 +54,6 @@
 			"default": true
 		}
 	},
-	"script": "file:./script.js",
+	"script": "file:./lite-vimeo/index.ts",
 	"editorScript": "file:./index.js"
 }

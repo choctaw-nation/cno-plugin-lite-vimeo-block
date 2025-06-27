@@ -2,7 +2,7 @@ import React from '@wordpress/element';
 import { registerBlockType } from '@wordpress/blocks';
 import { video } from '@wordpress/icons';
 import { useBlockProps } from '@wordpress/block-editor';
-import './script.js';
+import './lite-vimeo/index';
 
 /**
  * Internal dependencies
