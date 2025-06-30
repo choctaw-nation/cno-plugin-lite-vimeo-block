@@ -4,6 +4,10 @@ This block forks the [lite-vimeo](https://github.com/choctaw-nation/lite-vimeo) 
 
 ## Changelog
 
+### v1.0.1
+
+-   Fixed: Added missing `blocks-manifest.php` file
+
 ### v1.0.0
 
 -   Init!

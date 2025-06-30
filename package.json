@@ -1,6 +1,6 @@
 {
 	"name": "cno-plugin-lite-vimeo-block",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "A block that uses lite-vimeo ",
 	"author": "Choctaw Nation of Oklahoma",
 	"prettier": "@wordpress/prettier-config",
@@ -13,7 +13,7 @@
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"packages-update": "wp-scripts packages-update",
-		"plugin-zip": "wp-scripts build && wp-scripts plugin-zip",
+		"plugin-zip": "wp-scripts build --blocks-manifest && wp-scripts plugin-zip",
 		"start": "wp-scripts start --blocks-manifest"
 	},
 	"files": [
