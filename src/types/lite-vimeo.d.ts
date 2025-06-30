@@ -7,8 +7,12 @@ declare global {
 					autoload?: boolean | string;
 					autoplay?: boolean | string;
 					loop?: boolean | string;
-					isUnlisted?: boolean | string;
+					unlisted?: boolean | string;
 					enableTracking?: boolean;
+					start?: string;
+					videoPlay?: string;
+					videoTitle?: string;
+					customPlaceholder?: string;
 				},
 				HTMLElement
 			>;
@@ -21,11 +25,13 @@ export interface LiteVimeoAttributes {
 	customThumbnailURL: string | undefined;
 	videoID: string;
 	videoTitle: string;
-	autoload: boolean;
-	autoplay: true | undefined;
 	loop: true | undefined;
 	enableTracking: boolean;
+	videoStartAt: number;
 }
-export interface BlockAttributes extends LiteVimeoAttributes {
+
+export interface BlockAttributes
+	extends Omit< LiteVimeoAttributes, [ 'enableTracking' ] > {
 	align: string;
+	disableTracking: boolean;
 }

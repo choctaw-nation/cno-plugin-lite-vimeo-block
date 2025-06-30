@@ -11,10 +11,8 @@ export default class LVStylesHandler extends BaseElement {
 
 	/**
 	 * Add CSS to ShadowDOM Element
-	 *
-	 * @returns {string} the CSS
 	 */
-	addStyles() {
+	addStyles(): string {
 		const styles = `<style>
         :host {
           contain: content;
@@ -109,10 +107,8 @@ export default class LVStylesHandler extends BaseElement {
 	/**
 	 * Adds the video placeholder image to the shadowDOM player
 	 * Conditionally renders the play button if a custom placeholder is provided
-	 *
-	 * @returns {string} the HTML
 	 */
-	addPictureElement() {
+	addPictureElement(): string {
 		const picture = `
 		<div id="frame">
 		<picture>

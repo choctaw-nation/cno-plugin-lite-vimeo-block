@@ -6,7 +6,7 @@ export default class BaseElement extends HTMLElement {
 	 * The Shadow DOM Root
 	 *
 	 */
-	shadowRoot: ShadowRoot;
+	shadowRoot!: ShadowRoot;
 
 	/**
 	 * Whether the iframe has been loaded
@@ -17,12 +17,12 @@ export default class BaseElement extends HTMLElement {
 	 * The `div#frame` of the shadowDOM that the iframe will be inserted into
 	 *
 	 */
-	domRefFrame: HTMLDivElement;
+	domRefFrame!: HTMLDivElement;
 
 	/**
 	 * The `img` elements of the shadowDOM that will be used as placeholders
 	 */
-	domRefImg: {
+	domRefImg!: {
 		fallback: HTMLImageElement;
 		webp: HTMLSourceElement;
 		jpeg: HTMLSourceElement;
@@ -31,7 +31,7 @@ export default class BaseElement extends HTMLElement {
 	/**
 	 * The play button element
 	 */
-	domRefPlayButton: HTMLButtonElement;
+	domRefPlayButton!: HTMLButtonElement;
 
 	/**
 	 * The private hash for unlisted videos
@@ -49,11 +49,11 @@ export default class BaseElement extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return [ 'videoid' ];
+		return [ 'videoid', 'customplaceholder', 'unlisted' ];
 	}
 
 	get isUnlisted() {
-		return this.hasAttribute( 'unlisted' );
+		return this.getAttribute( 'unlisted' ) === 'true';
 	}
 
 	get enableTracking() {
@@ -64,6 +64,9 @@ export default class BaseElement extends HTMLElement {
 		return this.hasAttribute( 'customplaceholder' );
 	}
 
+	/**
+	 * Returns the custom placeholder URL if set, otherwise an empty string
+	 */
 	get customPlaceholder() {
 		return this.getAttribute( 'customplaceholder' ) || '';
 	}
@@ -87,7 +90,6 @@ export default class BaseElement extends HTMLElement {
 
 	/**
 	 * Set the video ID
-	 * @param {string} id
 	 */
 	set videoId( id: string ) {
 		this.setAttribute( 'videoid', id );
@@ -99,7 +101,6 @@ export default class BaseElement extends HTMLElement {
 
 	/**
 	 * Alters the "Play" button text
-	 * @param {string} name
 	 */
 	set videoPlay( name: string ) {
 		this.setAttribute( 'videoplay', name );
@@ -107,9 +108,8 @@ export default class BaseElement extends HTMLElement {
 
 	/**
 	 * Get the title of the video
-	 * @returns {string} the video title or "Video"
 	 */
-	get videoTitle(): string {
+	get videoTitle(): string | 'Video' {
 		return this.getAttribute( 'videotitle' ) || 'Video';
 	}
 
@@ -132,7 +132,6 @@ export default class BaseElement extends HTMLElement {
 
 	/**
 	 * Set the start time of the video
-	 * @param {string} time the start time of the video
 	 */
 	set videoStartAt( time: string ) {
 		this.setAttribute( 'start', time );
@@ -140,7 +139,6 @@ export default class BaseElement extends HTMLElement {
 
 	/**
 	 * Get the autoLoad property
-	 * @returns {boolean} the autoLoad property
 	 */
 	get autoLoad(): boolean {
 		return this.hasAttribute( 'autoload' );
@@ -148,8 +146,6 @@ export default class BaseElement extends HTMLElement {
 
 	/**
 	 * Alters the autoLoad property
-	 *
-	 * @param {boolean} value
 	 */
 	set autoLoad( value: boolean ) {
 		if ( value ) {
@@ -161,8 +157,6 @@ export default class BaseElement extends HTMLElement {
 
 	/**
 	 * Get the autoPlay property
-	 *
-	 * @returns {boolean} the autoPlay property
 	 */
 	get autoPlay(): boolean {
 		return this.hasAttribute( 'autoplay' );
@@ -170,8 +164,6 @@ export default class BaseElement extends HTMLElement {
 
 	/**
 	 * Alters the autoPlay property
-	 *
-	 * @param {boolean} value
 	 */
 	set autoPlay( value: boolean ) {
 		if ( value ) {
