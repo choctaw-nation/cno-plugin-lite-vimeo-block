@@ -2,11 +2,12 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "cno-lite-vimeo/cno-plugin-lite-vimeo-block",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"title": "CNO Lite Vimeo Block",
 	"category": "embed",
 	"icon": "video-alt3",
-	"description": "A block that uses lite-vimeo ",
+	"keywords": [ "vimeo", "video", "embed", "lite-vimeo" ],
+	"description": "A block that uses lite-vimeo to load Vimeo videos in a lightweight, performant way.",
 	"example": {},
 	"supports": {
 		"html": false,
@@ -35,25 +36,21 @@
 		},
 		"videoTitle": {
 			"type": "string",
-			"default": ""
-		},
-		"autoload": {
-			"type": "boolean",
-			"default": false
-		},
-		"autoplay": {
-			"type": "boolean",
-			"default": false
+			"default": "Video"
 		},
 		"loop": {
 			"type": "boolean",
 			"default": false
 		},
-		"enableTracking": {
+		"disableTracking": {
 			"type": "boolean",
-			"default": true
+			"default": false
+		},
+		"videoStartAt": {
+			"type": "number",
+			"default": ""
 		}
 	},
 	"script": "file:./lite-vimeo/index.ts",
-	"editorScript": "file:./index.js"
+	"editorScript": "file:./index.tsx"
 }

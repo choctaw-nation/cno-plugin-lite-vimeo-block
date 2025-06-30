@@ -1,11 +1,14 @@
-import { InspectorControls } from '@wordpress/block-editor';
+import { InspectorControls, MediaPlaceholder } from '@wordpress/block-editor';
 import { BlockAttributes } from '../types/lite-vimeo';
 import {
+	Button,
+	Panel,
 	PanelBody,
 	PanelRow,
 	TextControl,
 	ToggleControl,
 } from '@wordpress/components';
+import { isBlobURL } from '@wordpress/blob';
 
 /**
  * Inspector Controls for the Swiper block.
@@ -18,89 +21,163 @@ export default function BlockControls( {
 	setAttributes: ( {} ) => void;
 } ) {
 	const {
-		autoplay,
+		videoTitle,
+		videoStartAt,
 		videoID,
 		isUnlisted,
-		autoload,
-		enableTracking,
+		disableTracking,
 		loop,
 		customThumbnailURL,
 	} = attributes;
 	return (
 		<InspectorControls>
-			<PanelBody title="Lite Vimeo Settings">
-				<PanelRow>
-					<TextControl
-						label="Video ID"
-						value={ videoID }
-						__nextHasNoMarginBottom
-						onChange={ ( value ) =>
-							setAttributes( { videoID: value } )
-						}
-						autoComplete="off"
-						help="The ID of the Vimeo video to embed. If unlisted, the pattern should be “###/###”"
-						required={ true }
-					/>
-				</PanelRow>
-				<PanelRow>
-					<ToggleControl
-						label="Unlisted"
-						checked={ isUnlisted }
-						__nextHasNoMarginBottom
-						onChange={ ( value ) =>
-							setAttributes( { isUnlisted: value } )
-						}
-						help="If the video is unlisted, toggle this option to enable extra parameters to help the video facade look correct."
-					/>
-				</PanelRow>
-				<PanelRow>
-					<ToggleControl
-						label="Autoload"
-						checked={ autoload }
-						__nextHasNoMarginBottom
-						onChange={ ( value ) =>
-							setAttributes( { autoload: value } )
-						}
-						help="Waits to load the video until it is scrolled into view. Can help with performance, and also can cause bugs. Use with caution."
-					/>
-				</PanelRow>
-				{ autoplay && (
+			<Panel>
+				<PanelBody title="Lite Vimeo Settings" initialOpen={ true }>
 					<PanelRow>
-						<ToggleControl
-							label="Autoplay"
-							checked={ autoplay }
+						<TextControl
+							label="Video ID"
+							value={ videoID }
+							__next40pxDefaultSize
 							__nextHasNoMarginBottom
-							onChange={ ( value ) =>
-								setAttributes( { autoplay: value } )
-							}
-							help="Whether to autoplay the video."
+							onChange={ ( value ) => {
+								setAttributes( {
+									videoID: value,
+									isUnlisted: value.includes( '/' ),
+								} );
+							} }
+							autoComplete="off"
+							help="The ID of the Vimeo video to embed. If unlisted, the pattern should be “###/###”"
+							required={ true }
 						/>
 					</PanelRow>
-				) }
+					<PanelRow>
+						<ToggleControl
+							label="Unlisted"
+							checked={ isUnlisted }
+							__nextHasNoMarginBottom
+							onChange={ ( value ) =>
+								setAttributes( {
+									isUnlisted: value,
+								} )
+							}
+						/>
+					</PanelRow>
+					<PanelRow>
+						<ToggleControl
+							label="Disable Tracking"
+							checked={ disableTracking }
+							__nextHasNoMarginBottom
+							onChange={ ( value ) =>
+								setAttributes( { disableTracking: value } )
+							}
+							help="Whether to disable tracking."
+						/>
+					</PanelRow>
+					<PanelRow>
+						<ToggleControl
+							label="Loop"
+							checked={ loop }
+							__nextHasNoMarginBottom
+							onChange={ ( value ) =>
+								setAttributes( { loop: value } )
+							}
+							help={ loop && 'Looped videos are muted.' }
+						/>
+					</PanelRow>
+				</PanelBody>
+			</Panel>
+			{ isUnlisted && (
+				<Panel>
+					<PanelBody title="Custom Thumbnail Settings">
+						{ customThumbnailURL && (
+							<>
+								<img src={ customThumbnailURL } alt="" />
+								<Button
+									__next40pxDefaultSize
+									text="Clear Thumbnail"
+									variant="secondary"
+									isDestructive={ true }
+									size="compact"
+									onClick={ () =>
+										setAttributes( {
+											customThumbnailURL: undefined,
+										} )
+									}
+								/>
+							</>
+						) }
 
-				<PanelRow>
-					<ToggleControl
-						label="Enable Tracking"
-						checked={ enableTracking }
-						__nextHasNoMarginBottom
-						onChange={ ( value ) =>
-							setAttributes( { enableTracking: value } )
-						}
-						help="Whether to enable tracking."
-					/>
-				</PanelRow>
-				<PanelRow>
-					<ToggleControl
-						label="Loop"
-						checked={ loop }
-						__nextHasNoMarginBottom
-						onChange={ ( value ) =>
-							setAttributes( { loop: value } )
-						}
-						help="Whether to loop the video."
-					/>
-				</PanelRow>
-			</PanelBody>
+						<MediaPlaceholder
+							onSelect={ ( media ) => {
+								let url = null;
+								if ( isBlobURL( media.url ) ) {
+									url = media.url;
+								} else {
+									url = media.sizes
+										? media.sizes[
+												'profile-swiper-video-thumbnail'
+										  ].url
+										: media.media_details.sizes[
+												'profile-swiper-video-thumbnail'
+										  ].source_url;
+								}
+								setAttributes( {
+									customThumbnailURL: url,
+								} );
+							} }
+							disableMediaButtons={ customThumbnailURL }
+							allowedTypes={ [ 'image' ] }
+							accept="image/*"
+							multiple={ false }
+							onError={ ( error ) =>
+								console.error(
+									'Media Placeholder Error:',
+									error
+								)
+							}
+							labels={ {
+								title: 'Custom Thumbnail',
+							} }
+						/>
+					</PanelBody>
+				</Panel>
+			) }
+			<Panel>
+				<PanelBody
+					title="Advanced Lite Vimeo Settings"
+					initialOpen={ false }
+				>
+					<PanelRow>
+						<TextControl
+							label="Alternate Video Title"
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
+							onChange={ ( value ) =>
+								setAttributes( { videoTitle: value } )
+							}
+							autoComplete="off"
+							help="The title of the Vimeo video to embed. Defaults to “Play: [title]”"
+							value={ videoTitle || 'Video' }
+						/>
+					</PanelRow>
+					<PanelRow>
+						<TextControl
+							label="Alternate Start Time"
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
+							type="number"
+							onChange={ ( value ) => {
+								console.log( value );
+								setAttributes( {
+									videoStartAt: value,
+								} );
+							} }
+							help="The alternate start time (in seconds) of the video to embed."
+							value={ videoStartAt || 0 }
+						/>
+					</PanelRow>
+				</PanelBody>
+			</Panel>
 		</InspectorControls>
 	);
 }
