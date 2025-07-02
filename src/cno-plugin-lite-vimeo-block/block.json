@@ -51,6 +51,6 @@
 			"default": ""
 		}
 	},
-	"script": "file:./lite-vimeo/index.ts",
+	"viewScript": "file:./lite-vimeo/index.ts",
 	"editorScript": "file:./index.tsx"
 }
