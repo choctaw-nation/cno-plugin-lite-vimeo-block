@@ -28,10 +28,12 @@ export interface LiteVimeoAttributes {
 	loop: true | undefined;
 	enableTracking: boolean;
 	videoStartAt: number;
+	autoPlay: boolean;
+	autoload?: boolean;
 }
 
 export interface BlockAttributes
-	extends Omit< LiteVimeoAttributes, [ 'enableTracking' ] > {
+	extends Omit< LiteVimeoAttributes, [ 'enableTracking', 'autoload' ] > {
 	align: string;
 	disableTracking: boolean;
 }

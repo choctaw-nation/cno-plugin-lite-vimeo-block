@@ -28,6 +28,7 @@ export default function BlockControls( {
 		disableTracking,
 		loop,
 		customThumbnailURL,
+		autoPlay,
 	} = attributes;
 	return (
 		<InspectorControls>
@@ -148,6 +149,18 @@ export default function BlockControls( {
 					initialOpen={ false }
 				>
 					<PanelRow>
+						<ToggleControl
+							label="Autoplay"
+							__nextHasNoMarginBottom
+							onChange={ ( value ) =>
+								setAttributes( { autoPlay: value } )
+							}
+							autoComplete="off"
+							help="Enables Autoplay for use as a background video."
+							checked={ autoPlay }
+						/>
+					</PanelRow>
+					<PanelRow>
 						<TextControl
 							label="Alternate Video Title"
 							__next40pxDefaultSize
@@ -157,7 +170,7 @@ export default function BlockControls( {
 							}
 							autoComplete="off"
 							help="The title of the Vimeo video to embed. Defaults to “Play: [title]”"
-							value={ videoTitle || 'Video' }
+							value={ videoTitle || '' }
 						/>
 					</PanelRow>
 					<PanelRow>
@@ -167,9 +180,8 @@ export default function BlockControls( {
 							__nextHasNoMarginBottom
 							type="number"
 							onChange={ ( value ) => {
-								console.log( value );
 								setAttributes( {
-									videoStartAt: value,
+									videoStartAt: Number( value ),
 								} );
 							} }
 							help="The alternate start time (in seconds) of the video to embed."

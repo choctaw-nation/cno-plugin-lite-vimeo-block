@@ -35,6 +35,11 @@ registerBlockType( block.name, {
 							start={ `${ videoStartAt }s` }
 							unlisted={ isUnlisted }
 							enableTracking={ enableTracking }
+							style={
+								! props.isSelected
+									? { pointerEvents: 'none' }
+									: undefined
+							}
 						/>
 					) : (
 						<div
@@ -63,18 +68,24 @@ registerBlockType( block.name, {
 			enableTracking,
 			loop,
 			isUnlisted,
+			autoPlay,
 			videoStartAt,
 			videoTitle,
+			customThumbnailURL,
 		} = parseArgs( attributes );
+
 		return ! videoID ? null : (
 			<div { ...useBlockProps.save() }>
 				<lite-vimeo
 					videoid={ videoID }
 					loop={ loop }
+					customPlaceholder={ customThumbnailURL }
 					start={ `${ videoStartAt }s` }
 					videoTitle={ videoTitle }
 					unlisted={ isUnlisted }
 					enableTracking={ enableTracking }
+					autoload={ true === autoPlay ? 'true' : undefined }
+					autoplay={ true === autoPlay ? 'true' : undefined }
 				/>
 			</div>
 		);
@@ -89,6 +100,7 @@ function parseArgs( attributes: BlockAttributes ): LiteVimeoAttributes {
 		isUnlisted,
 		videoTitle,
 		customThumbnailURL,
+		autoPlay,
 		videoStartAt,
 	} = attributes;
 
@@ -98,6 +110,7 @@ function parseArgs( attributes: BlockAttributes ): LiteVimeoAttributes {
 		loop: loop ? true : undefined,
 		isUnlisted,
 		videoTitle,
+		autoPlay,
 		customThumbnailURL:
 			isUnlisted && customThumbnailURL !== ''
 				? customThumbnailURL

@@ -49,6 +49,10 @@
 		"videoStartAt": {
 			"type": "number",
 			"default": ""
+		},
+		"autoPlay": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"viewScript": "file:./lite-vimeo/index.ts",

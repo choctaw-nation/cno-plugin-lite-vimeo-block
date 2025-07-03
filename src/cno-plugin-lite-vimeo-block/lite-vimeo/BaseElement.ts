@@ -141,7 +141,7 @@ export default class BaseElement extends HTMLElement {
 	 * Get the autoLoad property
 	 */
 	get autoLoad(): boolean {
-		return this.hasAttribute( 'autoload' );
+		return this.getAttribute( 'autoload' ) === 'true';
 	}
 
 	/**
@@ -159,7 +159,13 @@ export default class BaseElement extends HTMLElement {
 	 * Get the autoPlay property
 	 */
 	get autoPlay(): boolean {
-		return this.hasAttribute( 'autoplay' );
+		console.log( 'autoload is: ', this.autoLoad );
+		console.log( 'autoplay is: ', this.getAttribute( 'autoplay' ) );
+		return (
+			( this.getAttribute( 'autoplay' ) === 'true' ||
+				this.hasAttribute( 'autoplay' ) ) &&
+			this.autoLoad
+		);
 	}
 
 	/**
@@ -167,9 +173,11 @@ export default class BaseElement extends HTMLElement {
 	 */
 	set autoPlay( value: boolean ) {
 		if ( value ) {
-			this.setAttribute( 'autoplay', 'autoplay' );
+			this.setAttribute( 'autoplay', 'true' );
+			this.setAttribute( 'autoload', 'true' );
 		} else {
 			this.removeAttribute( 'autoplay' );
+			this.removeAttribute( 'autoload' );
 		}
 	}
 }
