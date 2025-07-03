@@ -74,7 +74,7 @@ class LiteVimeo extends LVStylesHandler {
 		let params = 'hd=1&autohide=1&autoplay=1';
 		params += this.loop ? '&loop=1' : '';
 		params += this.enableTracking ? '' : '&dnt=1';
-		params += this.autoPlay ? '&muted=1' : '';
+		params += this.autoPlay ? '&muted=1&controls=0' : '';
 		params += this.videoStartAt ? `&#t=${ this.videoStartAt }` : '';
 		return params;
 	}
@@ -94,7 +94,6 @@ class LiteVimeo extends LVStylesHandler {
 			'aria-label',
 			`${ this.videoPlay }: ${ this.videoTitle }`
 		);
-
 		if ( this.autoLoad ) {
 			this.initIntersectionObserver();
 		}
@@ -106,6 +105,7 @@ class LiteVimeo extends LVStylesHandler {
 	attributeChangedCallback( name: string, oldVal: unknown, newVal: unknown ) {
 		switch ( name ) {
 			case 'videoid':
+			case 'autoplay':
 				if ( oldVal !== newVal ) {
 					this.setupComponent();
 					// if we have a previous iframe, remove it and the activated class
