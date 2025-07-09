@@ -159,8 +159,6 @@ export default class BaseElement extends HTMLElement {
 	 * Get the autoPlay property
 	 */
 	get autoPlay(): boolean {
-		console.log( 'autoload is: ', this.autoLoad );
-		console.log( 'autoplay is: ', this.getAttribute( 'autoplay' ) );
 		return (
 			( this.getAttribute( 'autoplay' ) === 'true' ||
 				this.hasAttribute( 'autoplay' ) ) &&
