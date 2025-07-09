@@ -4,6 +4,10 @@ This block forks the [lite-vimeo](https://github.com/choctaw-nation/lite-vimeo) 
 
 ## Changelog
 
+### v1.1.1
+
+-   Fixed: Suppressed `console.log` on the lite-vimeo element.
+
 ### v1.1.0
 
 -   Added: Supports Autoplay for use as a Background video!
