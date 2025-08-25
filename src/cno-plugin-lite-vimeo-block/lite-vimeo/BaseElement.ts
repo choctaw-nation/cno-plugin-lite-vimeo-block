@@ -64,6 +64,10 @@ export default class BaseElement extends HTMLElement {
 		return this.hasAttribute( 'customplaceholder' );
 	}
 
+	get showControls() {
+		return this.hasAttribute( 'showcontrols' );
+	}
+
 	/**
 	 * Returns the custom placeholder URL if set, otherwise an empty string
 	 */

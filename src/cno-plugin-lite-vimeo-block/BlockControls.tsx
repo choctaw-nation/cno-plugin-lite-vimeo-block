@@ -2,6 +2,8 @@ import { InspectorControls, MediaPlaceholder } from '@wordpress/block-editor';
 import { BlockAttributes } from '../types/lite-vimeo';
 import {
 	Button,
+	Flex,
+	FlexBlock,
 	Panel,
 	PanelBody,
 	PanelRow,
@@ -29,6 +31,7 @@ export default function BlockControls( {
 		loop,
 		customThumbnailURL,
 		autoPlay,
+		playerControls,
 	} = attributes;
 	return (
 		<InspectorControls>
@@ -148,46 +151,69 @@ export default function BlockControls( {
 					title="Advanced Lite Vimeo Settings"
 					initialOpen={ false }
 				>
-					<PanelRow>
-						<ToggleControl
-							label="Autoplay"
-							__nextHasNoMarginBottom
-							onChange={ ( value ) =>
-								setAttributes( { autoPlay: value } )
-							}
-							autoComplete="off"
-							help="Enables Autoplay for use as a background video."
-							checked={ autoPlay }
-						/>
-					</PanelRow>
-					<PanelRow>
-						<TextControl
-							label="Alternate Video Title"
-							__next40pxDefaultSize
-							__nextHasNoMarginBottom
-							onChange={ ( value ) =>
-								setAttributes( { videoTitle: value } )
-							}
-							autoComplete="off"
-							help="The title of the Vimeo video to embed. Defaults to “Play: [title]”"
-							value={ videoTitle || '' }
-						/>
-					</PanelRow>
-					<PanelRow>
-						<TextControl
-							label="Alternate Start Time"
-							__next40pxDefaultSize
-							__nextHasNoMarginBottom
-							type="number"
-							onChange={ ( value ) => {
-								setAttributes( {
-									videoStartAt: Number( value ),
-								} );
-							} }
-							help="The alternate start time (in seconds) of the video to embed."
-							value={ videoStartAt || 0 }
-						/>
-					</PanelRow>
+					<Flex
+						direction="column"
+						gap={ 6 }
+						as="div"
+						style={ { marginBlockStart: '.5rem' } }
+					>
+						<FlexBlock>
+							<ToggleControl
+								label="Autoplay"
+								__nextHasNoMarginBottom
+								onChange={ ( value ) =>
+									setAttributes( { autoPlay: value } )
+								}
+								autoComplete="off"
+								help="Enables Autoplay for use as a background video."
+								checked={ autoPlay }
+							/>
+						</FlexBlock>
+						{ autoPlay && (
+							<FlexBlock>
+								<ToggleControl
+									label="Player Controls"
+									__nextHasNoMarginBottom
+									onChange={ ( value ) =>
+										setAttributes( {
+											playerControls: value,
+										} )
+									}
+									autoComplete="off"
+									help="Enables Player Controls for the video."
+									checked={ playerControls }
+								/>
+							</FlexBlock>
+						) }
+						<FlexBlock>
+							<TextControl
+								label="Alternate Video Title"
+								__next40pxDefaultSize
+								__nextHasNoMarginBottom
+								onChange={ ( value ) =>
+									setAttributes( { videoTitle: value } )
+								}
+								autoComplete="off"
+								help="The title of the Vimeo video to embed. Defaults to “Play: [title]”"
+								value={ videoTitle || '' }
+							/>
+						</FlexBlock>
+						<FlexBlock>
+							<TextControl
+								label="Alternate Start Time"
+								__next40pxDefaultSize
+								__nextHasNoMarginBottom
+								type="number"
+								onChange={ ( value ) => {
+									setAttributes( {
+										videoStartAt: Number( value ),
+									} );
+								} }
+								help="The alternate start time (in seconds) of the video to embed."
+								value={ videoStartAt || 0 }
+							/>
+						</FlexBlock>
+					</Flex>
 				</PanelBody>
 			</Panel>
 		</InspectorControls>
