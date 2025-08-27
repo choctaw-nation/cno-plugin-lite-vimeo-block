@@ -25,7 +25,14 @@ registerBlockType( block.name, {
 		return (
 			<>
 				<BlockControls { ...props } />
-				<div { ...useBlockProps() }>
+				<div
+					{ ...useBlockProps( {
+						style: {
+							aspectRatio: '16 / 9',
+							width: '100%',
+						},
+					} ) }
+				>
 					{ videoID ? (
 						<lite-vimeo
 							videoid={ videoID }
@@ -72,10 +79,14 @@ registerBlockType( block.name, {
 			videoStartAt,
 			videoTitle,
 			customThumbnailURL,
+			showControls,
 		} = parseArgs( attributes );
-
 		return ! videoID ? null : (
-			<div { ...useBlockProps.save() }>
+			<div
+				{ ...useBlockProps.save( {
+					style: { aspectRatio: '16 / 9', width: '100%' },
+				} ) }
+			>
 				<lite-vimeo
 					videoid={ videoID }
 					loop={ loop }
@@ -86,6 +97,7 @@ registerBlockType( block.name, {
 					enableTracking={ enableTracking }
 					autoload={ true === autoPlay ? 'true' : undefined }
 					autoplay={ true === autoPlay ? 'true' : undefined }
+					showControls={ showControls ? 'true' : undefined }
 				/>
 			</div>
 		);
@@ -102,6 +114,7 @@ function parseArgs( attributes: BlockAttributes ): LiteVimeoAttributes {
 		customThumbnailURL,
 		autoPlay,
 		videoStartAt,
+		playerControls,
 	} = attributes;
 
 	return {
@@ -116,5 +129,6 @@ function parseArgs( attributes: BlockAttributes ): LiteVimeoAttributes {
 				? customThumbnailURL
 				: undefined,
 		enableTracking: ! disableTracking,
+		showControls: true === playerControls ? true : undefined,
 	};
 }

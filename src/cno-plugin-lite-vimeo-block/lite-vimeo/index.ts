@@ -74,9 +74,22 @@ class LiteVimeo extends LVStylesHandler {
 		let params = 'hd=1&autohide=1&autoplay=1';
 		params += this.loop ? '&loop=1' : '';
 		params += this.enableTracking ? '' : '&dnt=1';
-		params += this.autoPlay ? '&muted=1&controls=0' : '';
+		params += this.autoPlay ? '&muted=1' : '';
+		params += this.shouldShowControls();
 		params += this.videoStartAt ? `&#t=${ this.videoStartAt }` : '';
 		return params;
+	}
+
+	private shouldShowControls(): string {
+		let controls = true;
+		if ( this.autoPlay ) {
+			controls = false;
+
+			if ( this.showControls ) {
+				controls = true;
+			}
+		}
+		return `${ false === controls ? '&controls=0' : '' }`;
 	}
 
 	/**
