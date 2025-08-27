@@ -13,5 +13,15 @@
 		"videoid",
 		"videoplay",
 		"videotitle"
+	],
+	"eslint.useESLintClass": true,
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"html",
+		"css",
+		"scss"
 	]
 }

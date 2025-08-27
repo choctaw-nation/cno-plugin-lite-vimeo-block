@@ -44,10 +44,6 @@ export default class BaseElement extends HTMLElement {
 	 */
 	static preconnected: boolean = false;
 
-	constructor() {
-		super();
-	}
-
 	static get observedAttributes() {
 		return [ 'videoid', 'customplaceholder', 'unlisted' ];
 	}
@@ -128,7 +124,7 @@ export default class BaseElement extends HTMLElement {
 
 	/**
 	 * Get the start time of the video
-	 * @returns {string} the start time or "0s"
+	 * @return {string} the start time or "0s"
 	 */
 	get videoStartAt(): string | null {
 		return this.getAttribute( 'start' );
