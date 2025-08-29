@@ -14,9 +14,6 @@ import type { BlockAttributes, BlockEditProps } from '@wordpress/blocks';
 
 /**
  * Inspector Controls for the Swiper block.
- * @param root0
- * @param root0.attributes
- * @param root0.setAttributes
  */
 export default function BlockControls( {
 	attributes,
@@ -135,12 +132,11 @@ export default function BlockControls( {
 							multiple={ false }
 							onError={
 								( error ) =>
-									/* eslint-disable no-console */
+									// eslint-disable-next-line no-console
 									console.error(
 										'Media Placeholder Error:',
 										error
 									)
-								/* eslint-enable no-console */
 							}
 							labels={ {
 								title: 'Custom Thumbnail',

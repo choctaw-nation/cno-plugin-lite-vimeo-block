@@ -273,9 +273,8 @@ try {
 		customElements.define( 'lite-vimeo', LiteVimeo );
 	}
 } catch ( err ) {
-	/* eslint-disable no-console */
+	// eslint-disable-next-line no-console
 	console.error( err );
-	/* eslint-enable no-console */
 }
 
 export default LiteVimeo;
