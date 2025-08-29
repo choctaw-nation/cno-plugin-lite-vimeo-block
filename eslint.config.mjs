@@ -1,35 +1,58 @@
 import globals from 'globals';
-import js from '@eslint/js';
-import { defineConfig, globalIgnores } from 'eslint/config';
-import wordpressConfig from '@wordpress/scripts/config/.eslintrc.js';
-import prettierConfig from 'eslint-config-prettier';
+import { fixupConfigRules, includeIgnoreFile } from '@eslint/compat';
+import wordpressConfig from '@wordpress/eslint-plugin';
+
+// eslint-disable-next-line import/no-unresolved
+import { defineConfig } from 'eslint/config';
+
 import { FlatCompat } from '@eslint/eslintrc';
 import path from 'path';
-import { fileURLToPath } from 'url';
-import { fixupConfigRules } from '@eslint/compat';
+import { fileURLToPath, URL } from 'url';
+
+const gitignorePath = fileURLToPath( new URL( '.gitignore', import.meta.url ) );
 
 const __filename = fileURLToPath( import.meta.url );
 const __dirname = path.dirname( __filename );
+
 const compat = new FlatCompat( {
 	baseDirectory: __dirname,
 } );
 
 export default defineConfig( [
-	...fixupConfigRules( compat.config( wordpressConfig ) ),
-	prettierConfig,
+	includeIgnoreFile( gitignorePath, 'Ignore .gitignore files' ),
+	...fixupConfigRules(
+		compat.config(
+			wordpressConfig.configs[ 'recommended-with-formatting' ]
+		)
+	),
 	{
-		files: [ '**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx' ],
-		languageOptions: { globals: globals.browser },
-	},
-	{
-		files: [ '**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx' ],
-		plugins: { js },
-		extends: [ 'js/recommended' ],
-	},
-	{
+		files: [ 'wp-content/themes/**/src/js/**/*.{js,ts,jsx,tsx}' ],
+		languageOptions: {
+			globals: globals.browser,
+		},
+
 		rules: {
+			'jsdoc/require-jsdoc': 'off',
+			'jsdoc/require-param': 'off',
+			'jsdoc/require-param-type': 'off',
+			'jsdoc/require-returns-type': 'off',
+			'jsdoc/require-returns-check': 'off',
+			'jsdoc/require-returns-description': 'off',
+			'jsdoc/check-param-names': 'off',
 			'no-console': 'warn',
+			'no-duplicate-imports': 'off',
+			'import/no-duplicates': 'error',
+			'no-unused-vars': 'off',
+			'no-undef': 'off',
+			'no-shadow': 'off',
+		},
+		settings: {
+			'import/resolver': {
+				node: {
+					extensions: [ '.js', '.jsx', '.ts', '.tsx' ],
+				},
+				typescript: {},
+			},
 		},
 	},
-	globalIgnores( [ 'dist/', 'vendor/', 'build/' ] ),
 ] );

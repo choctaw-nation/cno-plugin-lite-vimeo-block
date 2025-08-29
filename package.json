@@ -11,7 +11,7 @@
 	"scripts": {
 		"build": "wp-scripts build --blocks-manifest",
 		"format": "wp-scripts format",
-		"lint:css": "wp-scripts lint-style",
+		"lint:css": "npx stylelint '**/*.scss' '**/*.css' --fix",
 		"lint:js": "npx eslint --fix",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts build --blocks-manifest && wp-scripts plugin-zip",
