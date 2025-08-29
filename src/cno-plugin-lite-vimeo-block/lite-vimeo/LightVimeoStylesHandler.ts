@@ -5,10 +5,6 @@ import BaseElement from './BaseElement';
  *
  */
 export default class LVStylesHandler extends BaseElement {
-	constructor() {
-		super();
-	}
-
 	/**
 	 * Add CSS to ShadowDOM Element
 	 */

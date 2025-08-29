@@ -1,4 +1,8 @@
-import { registerBlockType } from '@wordpress/blocks';
+import {
+	type BlockAttributes,
+	type BlockConfiguration,
+	registerBlockType,
+} from '@wordpress/blocks';
 import { video } from '@wordpress/icons';
 import { useBlockProps } from '@wordpress/block-editor';
 import './lite-vimeo/index';
@@ -7,68 +11,12 @@ import './lite-vimeo/index';
  * Internal dependencies
  */
 import block from './block.json';
-import { BlockAttributes, LiteVimeoAttributes } from '../types/lite-vimeo';
-import BlockControls from './BlockControls';
+import { parseArgs } from '../utils';
+import Edit from './Edit';
 
 registerBlockType( block.name, {
 	icon: video,
-	edit: ( props ) => {
-		const {
-			videoID,
-			enableTracking,
-			loop,
-			isUnlisted,
-			videoTitle,
-			videoStartAt,
-			customThumbnailURL,
-		} = parseArgs( props.attributes as BlockAttributes );
-		return (
-			<>
-				<BlockControls { ...props } />
-				<div
-					{ ...useBlockProps( {
-						style: {
-							aspectRatio: '16 / 9',
-							width: '100%',
-						},
-					} ) }
-				>
-					{ videoID ? (
-						<lite-vimeo
-							videoid={ videoID }
-							loop={ loop }
-							customPlaceholder={ customThumbnailURL }
-							videoTitle={ videoTitle }
-							start={ `${ videoStartAt }s` }
-							unlisted={ isUnlisted }
-							enableTracking={ enableTracking }
-							style={
-								! props.isSelected
-									? { pointerEvents: 'none' }
-									: undefined
-							}
-						/>
-					) : (
-						<div
-							style={ {
-								aspectRatio: '16/9',
-								border: '2px solid red',
-								backgroundColor: 'rgba( 255, 0, 0, 0.5 )',
-								alignContent: 'center',
-							} }
-						>
-							<p style={ { textAlign: 'center', fontSize: 40 } }>
-								CNO Lite Vimeo Block
-							</p>
-							<p style={ { textAlign: 'center', fontSize: 20 } }>
-								Video ID is required.
-							</p>
-						</div>
-					) }
-				</div>
-			</>
-		);
-	},
+	edit: Edit,
 	save: ( { attributes }: { attributes: BlockAttributes } ) => {
 		const {
 			videoID,
@@ -102,33 +50,4 @@ registerBlockType( block.name, {
 			</div>
 		);
 	},
-} );
-
-function parseArgs( attributes: BlockAttributes ): LiteVimeoAttributes {
-	const {
-		videoID,
-		disableTracking,
-		loop,
-		isUnlisted,
-		videoTitle,
-		customThumbnailURL,
-		autoPlay,
-		videoStartAt,
-		playerControls,
-	} = attributes;
-
-	return {
-		videoID,
-		videoStartAt: videoStartAt || 0,
-		loop: loop ? true : undefined,
-		isUnlisted,
-		videoTitle,
-		autoPlay,
-		customThumbnailURL:
-			isUnlisted && customThumbnailURL !== ''
-				? customThumbnailURL
-				: undefined,
-		enableTracking: ! disableTracking,
-		showControls: true === playerControls ? true : undefined,
-	};
-}
+} as unknown as BlockConfiguration );

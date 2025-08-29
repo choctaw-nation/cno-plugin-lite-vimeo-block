@@ -1,5 +1,4 @@
 import { InspectorControls, MediaPlaceholder } from '@wordpress/block-editor';
-import { BlockAttributes } from '../types/lite-vimeo';
 import {
 	Button,
 	Flex,
@@ -11,6 +10,7 @@ import {
 	ToggleControl,
 } from '@wordpress/components';
 import { isBlobURL } from '@wordpress/blob';
+import type { BlockAttributes, BlockEditProps } from '@wordpress/blocks';
 
 /**
  * Inspector Controls for the Swiper block.
@@ -18,10 +18,7 @@ import { isBlobURL } from '@wordpress/blob';
 export default function BlockControls( {
 	attributes,
 	setAttributes,
-}: {
-	attributes: BlockAttributes;
-	setAttributes: ( {} ) => void;
-} ) {
+}: BlockEditProps< BlockAttributes > ) {
 	const {
 		videoTitle,
 		videoStartAt,
@@ -133,11 +130,13 @@ export default function BlockControls( {
 							allowedTypes={ [ 'image' ] }
 							accept="image/*"
 							multiple={ false }
-							onError={ ( error ) =>
-								console.error(
-									'Media Placeholder Error:',
-									error
-								)
+							onError={
+								( error ) =>
+									// eslint-disable-next-line no-console
+									console.error(
+										'Media Placeholder Error:',
+										error
+									)
 							}
 							labels={ {
 								title: 'Custom Thumbnail',
