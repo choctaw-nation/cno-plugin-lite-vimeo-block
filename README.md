@@ -7,6 +7,7 @@ This block forks the [lite-vimeo](https://github.com/choctaw-nation/lite-vimeo) 
 ### v1.2.1
 
 -   Tweak: Added tooling
+-   Tweak: Updated CI/CD
 
 ### v1.1.1
 
