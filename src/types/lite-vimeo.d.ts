@@ -30,13 +30,6 @@ export interface LiteVimeoAttributes {
 	enableTracking: boolean;
 	videoStartAt: number;
 	autoPlay: boolean;
-	showControls: boolean;
+	showControls?: boolean;
 	autoload?: boolean;
-}
-
-export interface BlockAttributes
-	extends Omit< LiteVimeoAttributes, [ 'enableTracking', 'autoload' ] > {
-	align: string;
-	playerControls: boolean;
-	disableTracking: boolean;
 }

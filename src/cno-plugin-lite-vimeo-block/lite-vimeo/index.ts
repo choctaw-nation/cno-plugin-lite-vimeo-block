@@ -5,7 +5,7 @@ import LVStylesHandler from './LightVimeoStylesHandler';
  * Sets up the component.
  * Forked from the standalone version of lite-vimeo to be Gutenberg compatible.
  *
- * @link https://github.com/choctaw-nation/lite-vimeo
+ * @see https://github.com/choctaw-nation/lite-vimeo
  */
 class LiteVimeo extends LVStylesHandler {
 	constructor() {
@@ -25,11 +25,12 @@ class LiteVimeo extends LVStylesHandler {
 		this.shadowRoot.innerHTML = this.addStyles() + this.addPictureElement();
 		this.domRefFrame = this.shadowRoot.querySelector( '#frame' )!;
 		this.domRefImg = {
-			fallback: this.shadowRoot.querySelector( '#fallbackPlaceholder' ),
-			webp: this.shadowRoot.querySelector( '#webpPlaceholder' ),
-			jpeg: this.shadowRoot.querySelector( '#jpegPlaceholder' ),
+			fallback: this.shadowRoot.querySelector( '#fallbackPlaceholder' )!,
+			webp: this.shadowRoot.querySelector( '#webpPlaceholder' )!,
+			jpeg: this.shadowRoot.querySelector( '#jpegPlaceholder' )!,
 		};
-		this.domRefPlayButton = this.shadowRoot.querySelector( '.lvo-playbtn' );
+		this.domRefPlayButton =
+			this.shadowRoot.querySelector( '.lvo-playbtn' )!;
 	}
 
 	connectedCallback() {
@@ -114,6 +115,10 @@ class LiteVimeo extends LVStylesHandler {
 
 	/**
 	 * Lifecycle method that we use to listen for attribute changes to period
+	 *
+	 * @param {string}  name   the name of the attribute
+	 * @param {unknown} oldVal the old value of the attribute
+	 * @param {unknown} newVal the new value of the attribute
 	 */
 	attributeChangedCallback( name: string, oldVal: unknown, newVal: unknown ) {
 		switch ( name ) {
@@ -126,7 +131,7 @@ class LiteVimeo extends LVStylesHandler {
 						this.domRefFrame.classList.contains( 'lvo-activated' )
 					) {
 						this.domRefFrame.classList.remove( 'lvo-activated' );
-						this.shadowRoot?.querySelector( 'iframe' ).remove();
+						this.shadowRoot?.querySelector( 'iframe' )?.remove();
 					}
 				}
 				break;
@@ -156,7 +161,7 @@ class LiteVimeo extends LVStylesHandler {
 				threshold: 0,
 			};
 
-			const observer = new IntersectionObserver(
+			const intersectionObserver = new IntersectionObserver(
 				( entries, observer ) => {
 					entries.forEach( ( entry ) => {
 						if ( entry.isIntersecting && ! this.iframeLoaded ) {
@@ -169,7 +174,7 @@ class LiteVimeo extends LVStylesHandler {
 				options
 			);
 
-			observer.observe( this );
+			intersectionObserver.observe( this );
 		}
 	}
 
@@ -182,9 +187,10 @@ class LiteVimeo extends LVStylesHandler {
 		}
 
 		// we don't know which image type to preload, so warm the connection
-		LiteVimeo.preconnected
-			? null
-			: LiteVimeo.addPrefetch( 'preconnect', 'https://i.vimeocdn.com/' );
+		if ( ! LiteVimeo.preconnected ) {
+			LiteVimeo.addPrefetch( 'preconnect', 'https://i.vimeocdn.com/' );
+			LiteVimeo.preconnected = true;
+		}
 
 		const apiUrl = `https://vimeo.com/api/v2/video/${ this.videoId }.json`;
 		const apiResponse = ( await ( await fetch( apiUrl ) ).json() )[ 0 ];
@@ -210,6 +216,10 @@ class LiteVimeo extends LVStylesHandler {
 
 	/**
 	 * Add a <link rel={preload | preconnect} ...> to the head
+	 *
+	 * @param {string}        kind the kind of link to add
+	 * @param {string}        url  the URL to preload or preconnect
+	 * @param {string | null} as   the `as` attribute value
 	 */
 	static addPrefetch(
 		kind: 'preload' | 'preconnect',
@@ -263,6 +273,7 @@ try {
 		customElements.define( 'lite-vimeo', LiteVimeo );
 	}
 } catch ( err ) {
+	// eslint-disable-next-line no-console
 	console.error( err );
 }
 
