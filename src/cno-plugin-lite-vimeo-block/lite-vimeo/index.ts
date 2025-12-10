@@ -60,8 +60,8 @@ class LiteVimeo extends LVStylesHandler {
 
 			const iframeHTML = `
 			<iframe frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope" allowfullscreen autoplay="true" ${
-				this.autoPlay ? `muted="true"` : ''
-			} src="${ srcUrl }"></iframe>`;
+	this.autoPlay ? `muted="true"` : ''
+} src="${ srcUrl }"></iframe>`;
 			this.domRefFrame.insertAdjacentHTML( 'beforeend', iframeHTML );
 			this.domRefFrame.classList.add( 'lvo-activated' );
 			this.iframeLoaded = true;
@@ -251,7 +251,9 @@ class LiteVimeo extends LVStylesHandler {
 	 * Isolation and split caches adding serious complexity.
 	 */
 	static warmConnections() {
-		if ( LiteVimeo.preconnected ) return;
+		if ( LiteVimeo.preconnected ) {
+			return;
+		}
 		const vimeoAssets = {
 			preconnect: [
 				'https://f.vimeocdn.com',

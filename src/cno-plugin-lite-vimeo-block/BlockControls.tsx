@@ -116,11 +116,11 @@ export default function BlockControls( {
 								} else {
 									url = media.sizes
 										? media.sizes[
-												'profile-swiper-video-thumbnail'
-										  ].url
+											'profile-swiper-video-thumbnail'
+										].url
 										: media.media_details.sizes[
-												'profile-swiper-video-thumbnail'
-										  ].source_url;
+											'profile-swiper-video-thumbnail'
+										].source_url;
 								}
 								setAttributes( {
 									customThumbnailURL: url,

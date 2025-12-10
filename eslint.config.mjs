@@ -25,7 +25,7 @@ export default defineConfig( [
 		)
 	),
 	{
-		files: [ 'wp-content/src/**/*.{js,ts,jsx,tsx}' ],
+		files: [ 'src/**/*.{js,ts,jsx,tsx}' ],
 		languageOptions: {
 			globals: globals.browser,
 		},
