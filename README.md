@@ -4,6 +4,11 @@ This block forks the [lite-vimeo](https://github.com/choctaw-nation/lite-vimeo) 
 
 ## Changelog
 
+### v1.2.2 - [December 10, 2025]
+
+-   Fixed: Block now properly handles `dnt` parameter
+-   Chore: Update packages
+
 ### v1.2.1
 
 -   Tweak: Added tooling

@@ -42,7 +42,7 @@ registerBlockType( block.name, {
 					start={ `${ videoStartAt }s` }
 					videoTitle={ videoTitle }
 					unlisted={ isUnlisted }
-					enableTracking={ enableTracking }
+					enableTracking={ enableTracking ? 'true' : undefined }
 					autoload={ true === autoPlay ? 'true' : undefined }
 					autoplay={ true === autoPlay ? 'true' : undefined }
 					showControls={ showControls ? 'true' : undefined }

@@ -8,7 +8,7 @@ declare global {
 					autoplay?: boolean | string;
 					loop?: boolean | string;
 					unlisted?: boolean | string;
-					enableTracking?: boolean;
+					enableTracking?: string;
 					start?: string;
 					videoPlay?: string;
 					videoTitle?: string;
@@ -27,7 +27,7 @@ export interface LiteVimeoAttributes {
 	videoID: string;
 	videoTitle: string;
 	loop: true | undefined;
-	enableTracking: boolean;
+	enableTracking?: boolean;
 	videoStartAt: number;
 	autoPlay: boolean;
 	showControls?: boolean;
