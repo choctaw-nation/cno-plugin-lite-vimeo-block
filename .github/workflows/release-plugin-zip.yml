@@ -14,3 +14,4 @@ jobs:
     with:
       should_build: true
       plugin_name: cno-plugin-lite-vimeo-block
+    secrets: inherit
