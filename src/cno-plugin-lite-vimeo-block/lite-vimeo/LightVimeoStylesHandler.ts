@@ -40,10 +40,10 @@ export default class LVStylesHandler extends BaseElement {
 			position: absolute;
 			top: 0;
 			${
-				this.hasCustomPlaceholder
-					? ''
-					: 'background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAADGCAYAAAAT+OqFAAAAdklEQVQoz42QQQ7AIAgEF/T/D+kbq/RWAlnQyyazA4aoAB4FsBSA/bFjuF1EOL7VbrIrBuusmrt4ZZORfb6ehbWdnRHEIiITaEUKa5EJqUakRSaEYBJSCY2dEstQY7AuxahwXFrvZmWl2rh4JZ07z9dLtesfNj5q0FU3A5ObbwAAAABJRU5ErkJggg==);'
-			}
+	this.hasCustomPlaceholder
+		? ''
+		: 'background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAADGCAYAAAAT+OqFAAAAdklEQVQoz42QQQ7AIAgEF/T/D+kbq/RWAlnQyyazA4aoAB4FsBSA/bFjuF1EOL7VbrIrBuusmrt4ZZORfb6ehbWdnRHEIiITaEUKa5EJqUakRSaEYBJSCY2dEstQY7AuxahwXFrvZmWl2rh4JZ07z9dLtesfNj5q0FU3A5ObbwAAAABJRU5ErkJggg==);'
+}
 			background-position: top;
 			height: 60px;
 			padding-bottom: 50px;
@@ -109,12 +109,12 @@ export default class LVStylesHandler extends BaseElement {
 		<div id="frame">
 		<picture>
         	${
-				this.hasCustomPlaceholder
-					? `<img id="custom-placeholder"
+	this.hasCustomPlaceholder
+		? `<img id="custom-placeholder"
 				src="${ this.customPlaceholder }"
 				decoding="async"
 				loading="lazy" />`
-					: `
+		: `
 				<source id="webpPlaceholder" type="image/webp">
 				<source id="jpegPlaceholder" type="image/jpeg">
 				<img id="fallbackPlaceholder"
@@ -125,7 +125,7 @@ export default class LVStylesHandler extends BaseElement {
 					loading="lazy"
 				/>
 	  			`
-			}
+}
 		</picture>
 		<button class="lvo-playbtn"></button>
       	</div>`;

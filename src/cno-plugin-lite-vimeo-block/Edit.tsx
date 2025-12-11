@@ -13,6 +13,7 @@ export default function Edit( props ) {
 		videoStartAt,
 		customThumbnailURL,
 	} = parseArgs( props.attributes as BlockAttributes );
+
 	return (
 		<>
 			<BlockControls { ...props } />

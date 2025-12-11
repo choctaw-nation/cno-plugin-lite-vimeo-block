@@ -25,7 +25,7 @@ export function parseArgs( attributes: BlockAttributes ): LiteVimeoAttributes {
 			isUnlisted && customThumbnailURL !== ''
 				? customThumbnailURL
 				: undefined,
-		enableTracking: ! disableTracking,
+		enableTracking: false === disableTracking ? true : undefined,
 		showControls: true === playerControls ? true : undefined,
 	};
 }
