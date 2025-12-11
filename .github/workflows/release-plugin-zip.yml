@@ -5,33 +5,12 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
-  build-and-upload:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v5
-
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
-
-      - name: Install dependencies
-        run: bun install
-
-      - name: Get plugin version from PHP file
-        id: get_version
-        run: |
-          version=$(grep -E '^\s*\*\s*Version:' cno-plugin-lite-vimeo-block.php | awk '{print $3}')
-          echo "version=$version" >> $GITHUB_OUTPUT
-
-      - name: Build plugin zip
-        run: bun run plugin-zip
-
-      - name: Upload plugin zip to release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: ./cno-plugin-lite-vimeo-block.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  create-release:
+    uses: choctaw-nation/shared-github-actions/.github/workflows/deploy-release.yml@main
+    with:
+      should_build: true
+      plugin_name: cno-plugin-lite-vimeo-block
