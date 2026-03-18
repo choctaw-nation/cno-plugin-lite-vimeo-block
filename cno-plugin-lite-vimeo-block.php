@@ -3,10 +3,10 @@
  * Plugin Name:       CNO Lite Vimeo Block
  * Plugin URI:        https://github.com/choctawnation/cno-plugin-lite-vimeo-block
  * Description:       A block that uses lite-vimeo
- * Version:           1.2.2
+ * Version:           1.2.3
  * Requires at least: 6.7
  * Requires PHP:      8.2
- * Tested up to:      6.9.0
+ * Tested up to:      6.9.4
  * Author:            Choctaw Nation of Oklahoma
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
