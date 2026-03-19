@@ -6,11 +6,7 @@ import { useBlockProps } from '@wordpress/block-editor';
 export default function Edit( props ) {
 	const {
 		videoID,
-		enableTracking,
-		loop,
-		isUnlisted,
 		videoTitle,
-		videoStartAt,
 		customThumbnailURL,
 	} = parseArgs( props.attributes as BlockAttributes );
 
@@ -22,23 +18,24 @@ export default function Edit( props ) {
 					style: {
 						aspectRatio: '16 / 9',
 						width: '100%',
+						position: 'relative',
 					},
 				} ) }
 			>
 				{ videoID ? (
-					<lite-vimeo
-						videoid={ videoID }
-						loop={ loop }
-						customPlaceholder={ customThumbnailURL }
-						videoTitle={ videoTitle }
-						start={ `${ videoStartAt }s` }
-						unlisted={ isUnlisted }
-						enableTracking={ enableTracking }
-						style={
-							! props.isSelected
-								? { pointerEvents: 'none' }
-								: undefined
-						}
+					<iframe
+						title={ videoTitle }
+						src={ `https://player.vimeo.com/video/${ videoID }?autoplay=0&dnt=1` }
+						style={ {
+							position: 'absolute',
+							width: '100%',
+							height: '100%',
+							border: 'none',
+							pointerEvents: ! props.isSelected
+								? 'none'
+								: undefined,
+						} }
+						allowFullScreen
 					/>
 				) : (
 					<div
@@ -56,6 +53,20 @@ export default function Edit( props ) {
 							Video ID is required.
 						</p>
 					</div>
+				) }
+				{ videoID && customThumbnailURL && (
+					<img
+						src={ customThumbnailURL }
+						alt=""
+						style={ {
+							position: 'absolute',
+							inset: 0,
+							width: '100%',
+							height: '100%',
+							objectFit: 'cover',
+							pointerEvents: 'none',
+						} }
+					/>
 				) }
 			</div>
 		</>

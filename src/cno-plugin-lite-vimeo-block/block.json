@@ -59,6 +59,7 @@
 			"default": false
 		}
 	},
-	"script": "file:./lite-vimeo/index.ts",
+	"viewScriptModule": "file:./view.ts",
+	"style": "file:./style-index.css",
 	"editorScript": "file:./index.tsx"
 }

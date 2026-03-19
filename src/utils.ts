@@ -14,8 +14,16 @@ export function parseArgs( attributes: BlockAttributes ): LiteVimeoAttributes {
 		playerControls,
 	} = attributes;
 
+	// For unlisted videos the videoID is "numericId/hash"; split them apart.
+	let cleanVideoId = videoID as string;
+	let videoHash = '';
+	if ( isUnlisted && typeof videoID === 'string' && videoID.includes( '/' ) ) {
+		[ cleanVideoId, videoHash ] = videoID.split( '/' );
+	}
+
 	return {
-		videoID,
+		videoID: cleanVideoId,
+		videoHash,
 		videoStartAt: videoStartAt || 0,
 		loop: loop ? true : undefined,
 		isUnlisted,

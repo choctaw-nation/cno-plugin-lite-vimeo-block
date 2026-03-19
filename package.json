@@ -9,13 +9,13 @@
 	"main": "build/index.js",
 	"type": "commonjs",
 	"scripts": {
-		"build": "wp-scripts build --blocks-manifest",
+		"build": "wp-scripts build --blocks-manifest --experimental-modules",
 		"format": "wp-scripts format",
 		"lint:css": "npx stylelint '**/*.scss' '**/*.css' --fix",
 		"lint:js": "npx eslint --fix",
 		"packages-update": "wp-scripts packages-update",
-		"plugin-zip": "wp-scripts build --blocks-manifest && wp-scripts plugin-zip",
-		"start": "wp-scripts start --blocks-manifest"
+		"plugin-zip": "wp-scripts build --blocks-manifest --experimental-modules && wp-scripts plugin-zip",
+		"start": "wp-scripts start --blocks-manifest --experimental-modules"
 	},
 	"files": [
 		"build",
@@ -30,6 +30,7 @@
 		"@wordpress/blocks": "^15.9.0",
 		"@wordpress/components": "^30.9.0",
 		"@wordpress/icons": "^11.3.0",
+		"@wordpress/interactivity": "^6.42.0",
 		"@wordpress/scripts": "^31.1.0",
 		"eslint": "^9.39.1",
 		"eslint-config-prettier": "^10.1.8",
