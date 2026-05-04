@@ -1,9 +1,7 @@
 import globals from 'globals';
 import { fixupConfigRules, includeIgnoreFile } from '@eslint/compat';
 import wordpressConfig from '@wordpress/eslint-plugin';
-
 import { defineConfig } from 'eslint/config';
-
 import { FlatCompat } from '@eslint/eslintrc';
 import path from 'path';
 import { fileURLToPath, URL } from 'url';

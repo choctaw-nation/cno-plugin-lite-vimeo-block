@@ -1,13 +1,12 @@
 {
 	"name": "cno-plugin-lite-vimeo-block",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "A block that uses lite-vimeo ",
 	"author": "Choctaw Nation of Oklahoma",
 	"prettier": "@wordpress/prettier-config",
 	"license": "GPL-2.0-or-later",
 	"homepage": "https://github.com/choctawnation/cno-plugin-lite-vimeo-block",
 	"main": "build/index.js",
-	"type": "commonjs",
 	"scripts": {
 		"build": "wp-scripts build --blocks-manifest --experimental-modules",
 		"format": "wp-scripts format",
@@ -22,7 +21,7 @@
 		"cno-plugin-lite-vimeo-block.php"
 	],
 	"devDependencies": {
-		"@eslint/compat": "^2.0.0",
+		"@eslint/compat": "^2.0.3",
 		"@eslint/eslintrc": "^3.3.3",
 		"@eslint/js": "^9.39.1",
 		"@wordpress/blob": "^4.36.0",
@@ -34,10 +33,9 @@
 		"@wordpress/scripts": "^31.1.0",
 		"eslint": "^9.39.1",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-jest": "^29.2.1",
 		"eslint-plugin-react": "^7.37.5",
 		"eslint-plugin-react-hooks": "^7.0.1",
-		"globals": "^16.5.0",
-		"typescript-eslint": "^8.49.0"
+		"globals": "^17.4.0",
+		"typescript-eslint": "^8.57.1"
 	}
 }
