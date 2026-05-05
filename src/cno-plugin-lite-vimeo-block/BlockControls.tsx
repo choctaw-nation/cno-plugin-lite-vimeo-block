@@ -12,9 +12,6 @@ import {
 import { isBlobURL } from '@wordpress/blob';
 import type { BlockAttributes, BlockEditProps } from '@wordpress/blocks';
 
-/**
- * Inspector Controls for the Swiper block.
- */
 export default function BlockControls( {
 	attributes,
 	setAttributes,
@@ -53,9 +50,9 @@ export default function BlockControls( {
 					</PanelRow>
 					<PanelRow>
 						<ToggleControl
+							__nextHasNoMarginBottom
 							label="Unlisted"
 							checked={ isUnlisted }
-							__nextHasNoMarginBottom
 							onChange={ ( value ) =>
 								setAttributes( {
 									isUnlisted: value,
@@ -65,9 +62,9 @@ export default function BlockControls( {
 					</PanelRow>
 					<PanelRow>
 						<ToggleControl
+							__nextHasNoMarginBottom
 							label="Disable Tracking"
 							checked={ disableTracking }
-							__nextHasNoMarginBottom
 							onChange={ ( value ) =>
 								setAttributes( { disableTracking: value } )
 							}
@@ -76,9 +73,9 @@ export default function BlockControls( {
 					</PanelRow>
 					<PanelRow>
 						<ToggleControl
+							__nextHasNoMarginBottom
 							label="Loop"
 							checked={ loop }
-							__nextHasNoMarginBottom
 							onChange={ ( value ) =>
 								setAttributes( { loop: value } )
 							}
@@ -115,12 +112,9 @@ export default function BlockControls( {
 									url = media.url;
 								} else {
 									url = media.sizes
-										? media.sizes[
-											'profile-swiper-video-thumbnail'
-										].url
-										: media.media_details.sizes[
-											'profile-swiper-video-thumbnail'
-										].source_url;
+										? media.sizes[ '1080p' ].url
+										: media.media_details.sizes[ '1080p' ]
+												.source_url;
 								}
 								setAttributes( {
 									customThumbnailURL: url,
@@ -130,13 +124,12 @@ export default function BlockControls( {
 							allowedTypes={ [ 'image' ] }
 							accept="image/*"
 							multiple={ false }
-							onError={
-								( error ) =>
-									// eslint-disable-next-line no-console
-									console.error(
-										'Media Placeholder Error:',
-										error
-									)
+							onError={ ( error ) =>
+								// eslint-disable-next-line no-console
+								console.error(
+									'Media Placeholder Error:',
+									error
+								)
 							}
 							labels={ {
 								title: 'Custom Thumbnail',

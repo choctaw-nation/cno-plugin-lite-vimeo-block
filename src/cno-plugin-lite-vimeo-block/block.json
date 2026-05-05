@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "cno-lite-vimeo/cno-plugin-lite-vimeo-block",
-	"version": "1.1.0",
+	"version": "2.0.0",
 	"title": "CNO Lite Vimeo Block",
 	"category": "embed",
 	"icon": "video-alt3",
@@ -18,7 +18,8 @@
 		"customClassName": true,
 		"spacing": {
 			"margin": [ "top", "bottom" ]
-		}
+		},
+		"interactivity":true
 	},
 	"attributes": {
 		"isUnlisted": {
