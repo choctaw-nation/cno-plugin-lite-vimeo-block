@@ -4,6 +4,10 @@ This block forks the [lite-vimeo](https://github.com/choctaw-nation/lite-vimeo) 
 
 ## Changelog
 
+### v2.0.0 - [May 5, 2026]
+
+- Breaking: Swap shadow-dom based code for @wordpress/interactivity util
+
 ### v1.2.3 - [March 18, 2026]
 
 - Chore: Update packages

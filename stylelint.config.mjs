@@ -25,15 +25,20 @@ export default {
 	},
 	overrides: [
 		{
-			files: [ '**/*.scss' ],
+			files: [ 'src/**/*.scss' ],
 			customSyntax: 'postcss-scss',
 		},
 		{
-			files: [ '**/*.html', '**/*.php' ],
+			files: [ 'src/**/*.html', 'src/**/*.php' ],
 			customSyntax: 'postcss-html',
 		},
 		{
-			files: [ '**/*.jsx', '**/*.tsx', '**/*.js', '**/*.ts' ],
+			files: [
+				'src/**/*.jsx',
+				'src/**/*.tsx',
+				'src/**/*.js',
+				'src/**/*.ts',
+			],
 			customSyntax: 'postcss-js',
 		},
 	],
