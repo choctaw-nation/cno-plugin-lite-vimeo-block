@@ -30,3 +30,8 @@ vendor/
 
 # dotenv environment variables file
 .env
+
+# Tests
+
+# Other
+.vscode/launch.json
