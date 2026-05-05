@@ -13,6 +13,7 @@ import './style.scss';
 import block from './block.json';
 import { parseArgs } from '../utils';
 import Edit from './Edit';
+import VideoPoster from './components/VideoPoster';
 
 registerBlockType( block.name, {
 	icon: video,
@@ -52,16 +53,11 @@ registerBlockType( block.name, {
 			iframeSrc: null,
 			playAriaLabel: `Play: ${ videoTitle }`,
 		};
+		const blockProps = useBlockProps.save( {} );
 
 		return (
 			<div
-				{ ...useBlockProps.save( {
-					style: {
-						aspectRatio: '16 / 9',
-						width: '100%',
-						position: 'relative',
-					},
-				} ) }
+				{ ...blockProps }
 				data-wp-interactive="cno-lite-vimeo"
 				data-wp-context={ JSON.stringify( context ) }
 				data-wp-init="callbacks.init"
@@ -74,40 +70,13 @@ registerBlockType( block.name, {
 					data-wp-on--click="actions.addIframe"
 					data-wp-class--lvo-activated="context.iframeLoaded"
 				>
-					{ customThumbnailURL ? (
-						<picture>
-							<img
-								className="lv-custom-placeholder"
-								src={ customThumbnailURL }
-								decoding="async"
-								loading="lazy"
-								alt={ `Play: ${ videoTitle }` }
-							/>
-						</picture>
-					) : (
-						<picture>
-							<source
-								type="image/webp"
-								data-wp-bind--srcset="context.posterUrlWebp"
-							/>
-							<source
-								type="image/jpeg"
-								data-wp-bind--srcset="context.posterUrlJpeg"
-							/>
-							<img
-								className="lv-fallback-placeholder"
-								referrerPolicy="origin"
-								width={ 1100 }
-								height={ 619 }
-								decoding="async"
-								loading="lazy"
-								data-wp-bind--src="context.posterUrlJpeg"
-								data-wp-bind--aria-label="context.playAriaLabel"
-								data-wp-bind--alt="context.playAriaLabel"
-								alt=""
-							/>
-						</picture>
-					) }
+					<VideoPoster
+						context={ context }
+						scope="save"
+						customThumbnailURL={ customThumbnailURL }
+						videoTitle={ videoTitle }
+					/>
+
 					<button
 						className="lvo-playbtn"
 						aria-label={ `Play: ${ videoTitle }` }
@@ -115,7 +84,6 @@ registerBlockType( block.name, {
 					/>
 					<iframe
 						className="lv-iframe"
-						style={ { border: 'none' } }
 						allow="accelerometer; autoplay; encrypted-media; gyroscope"
 						allowFullScreen
 						data-wp-bind--src="context.iframeSrc"

@@ -1,29 +1,39 @@
-$gradient-placeholder: url( "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAADGCAYAAAAT+OqFAAAAdklEQVQoz42QQQ7AIAgEF/T/D+kbq/RWAlnQyyazA4aoAB4FsBSA/bFjuF1EOL7VbrIrBuusmrt4ZZORfb6ehbWdnRHEIiITaEUKa5EJqUakRSaEYBJSCY2dEstQY7AuxahwXFrvZmWl2rh4JZ07z9dLtesfNj5q0FU3A5ObbwAAAABJRU5ErkJggg==" );
+@mixin fill-block {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+}
 
-.wp-block-cno-lite-vimeo-cno-plugin-lite-vimeo-block {
+:where(.wp-block-cno-lite-vimeo-cno-plugin-lite-vimeo-block) {
 	contain: content;
 	display: block;
 	position: relative;
+	width: 100%;
+	aspect-ratio: 16 / 9;
 
 	.lv-frame {
-		position: absolute;
-		height: 100%;
-		width: 100%;
-		inset-inline-start: 0;
-		inset-block-start: 0;
+		@include fill-block;
+
 		cursor: pointer;
 
 		&::before {
+			--gradient-opacity: 0.15;
+			--gradient-color: 0, 0, 0;
+			--gradient-inset: 25%;
+
+			@include fill-block;
+
 			content: "";
 			display: block;
-			position: absolute;
-			top: 0;
-			background-image: $gradient-placeholder;
-			background-position: top;
-			height: 60px;
-			padding-bottom: 50px;
-			width: 100%;
-			transition: all 0.2s cubic-bezier( 0, 0, 0.2, 1 );
+			background-image: linear-gradient(
+				to bottom,
+				rgb(var(--gradient-color), var(--gradient-opacity)) 0%,
+				rgb(var(--gradient-color), 0) var(--gradient-inset),
+				rgb(var(--gradient-color), 0) calc(100% - var(--gradient-inset)),
+				rgb(var(--gradient-color), var(--gradient-opacity)) 100%
+			);
+			transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
 			z-index: 1;
 		}
 
@@ -32,20 +42,13 @@ $gradient-placeholder: url( "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAA
 		}
 
 		picture {
-			position: absolute;
-			height: 100%;
-			width: 100%;
-			inset-inline-start: 0;
-			inset-block-start: 0;
+			@include fill-block;
 		}
 
 		.lv-fallback-placeholder,
 		.lv-custom-placeholder {
-			position: absolute;
-			height: 100%;
-			width: 100%;
-			inset-inline-start: 0;
-			inset-block-start: 0;
+			@include fill-block;
+
 			object-fit: cover;
 		}
 
@@ -53,40 +56,39 @@ $gradient-placeholder: url( "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAA
 			width: 70px;
 			height: 46px;
 			background-color: #212121;
-			z-index: 1;
+			z-index: 3;
+			padding: 0;
 			opacity: 0.8;
 			border-radius: 10%;
-			transition: all 0.2s cubic-bezier( 0, 0, 0.2, 1 );
+			transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
 			border: 0;
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			transform: translate3d( -50%, -50%, 0 );
+			translate: -50% -50%;
 
 			&::before {
 				content: "";
 				border-style: solid;
 				border-width: 11px 0 11px 19px;
-				border-color: transparent transparent transparent #fff;
+				border-color: transparent transparent transparent white;
 				position: absolute;
 				top: 50%;
 				left: 50%;
-				transform: translate3d( -50%, -50%, 0 );
+				transform: translate3d(-50%, -50%, 0);
 			}
 		}
 
 		&:hover .lvo-playbtn {
-			background-color: rgb( 98 175 237 );
+			background-color: rgb(98 175 237);
 			opacity: 1;
 			cursor: pointer;
 		}
 
 		.lv-iframe {
-			position: absolute;
-			height: 100%;
-			width: 100%;
-			inset-inline-start: 0;
-			inset-block-start: 0;
+			@include fill-block;
+
+			border: none;
 			display: none;
 		}
 

@@ -1,72 +1,82 @@
-import type { BlockAttributes } from '@wordpress/blocks';
+import type { BlockAttribute } from '@wordpress/blocks';
 import { parseArgs } from '../utils';
 import BlockControls from './BlockControls';
 import { useBlockProps } from '@wordpress/block-editor';
+import Placeholder from './components/Placeholder';
+import VideoPoster from './components/VideoPoster';
+import { useState, useEffect } from '@wordpress/element';
 
 export default function Edit( props ) {
-	const {
-		videoID,
-		videoTitle,
-		customThumbnailURL,
-	} = parseArgs( props.attributes as BlockAttributes );
+	const { videoID, videoTitle, customThumbnailURL } = parseArgs(
+		props.attributes as BlockAttribute
+	);
+	const [ isPlaying, setIsPlaying ] = useState( false );
+	const [ wrapperClassName, setWrapperClassName ] = useState( 'lv-frame' );
+	const [ iframeSource, setIframeSource ] = useState< string | undefined >(
+		undefined
+	);
+	useEffect( () => {
+		if ( videoID ) {
+			setIframeSource(
+				`https://player.vimeo.com/video/${ videoID }?autoplay=0&dnt=1`
+			);
+		}
+		if ( isPlaying ) {
+			setWrapperClassName( 'lv-frame lvo-activated' );
+			if ( videoID ) {
+				setIframeSource(
+					`https://player.vimeo.com/video/${ videoID }?autoplay=1&dnt=1`
+				);
+			}
+		} else {
+			setWrapperClassName( 'lv-frame' );
+			if ( videoID ) {
+				setIframeSource(
+					`https://player.vimeo.com/video/${ videoID }?autoplay=0&dnt=1`
+				);
+			}
+		}
+	}, [ isPlaying, videoID ] );
 
+	const blockProps = useBlockProps();
 	return (
 		<>
 			<BlockControls { ...props } />
-			<div
-				{ ...useBlockProps( {
-					style: {
-						aspectRatio: '16 / 9',
-						width: '100%',
-						position: 'relative',
-					},
-				} ) }
-			>
+			<div { ...blockProps }>
 				{ videoID ? (
-					<iframe
-						title={ videoTitle }
-						src={ `https://player.vimeo.com/video/${ videoID }?autoplay=0&dnt=1` }
-						style={ {
-							position: 'absolute',
-							width: '100%',
-							height: '100%',
-							border: 'none',
-							pointerEvents: ! props.isSelected
-								? 'none'
-								: undefined,
-						} }
-						allowFullScreen
-					/>
-				) : (
-					<div
-						style={ {
-							aspectRatio: '16/9',
-							border: '2px solid red',
-							backgroundColor: 'rgba( 255, 0, 0, 0.5 )',
-							alignContent: 'center',
-						} }
-					>
-						<p style={ { textAlign: 'center', fontSize: 40 } }>
-							CNO Lite Vimeo Block
-						</p>
-						<p style={ { textAlign: 'center', fontSize: 20 } }>
-							Video ID is required.
-						</p>
+					<div className={ wrapperClassName }>
+						{ ! isPlaying && (
+							<>
+								<VideoPoster
+									customThumbnailURL={ customThumbnailURL }
+									videoTitle={ videoTitle }
+									context={ {
+										videoId: videoID,
+										playAriaLabel: `Play: ${ videoTitle }`,
+									} }
+									scope="editor"
+								/>
+								<button
+									onClick={ () => setIsPlaying( true ) }
+									className="lvo-playbtn"
+									aria-label={ `Play: ${ videoTitle }` }
+								/>
+							</>
+						) }
+						<iframe
+							className="lv-iframe"
+							title={ videoTitle }
+							src={ iframeSource }
+							// style={ {
+							// 	pointerEvents: ! props.isSelected
+							// 		? 'none'
+							// 		: undefined,
+							// } }
+							allowFullScreen
+						/>
 					</div>
-				) }
-				{ videoID && customThumbnailURL && (
-					<img
-						src={ customThumbnailURL }
-						alt=""
-						style={ {
-							position: 'absolute',
-							inset: 0,
-							width: '100%',
-							height: '100%',
-							objectFit: 'cover',
-							pointerEvents: 'none',
-						} }
-					/>
+				) : (
+					<Placeholder />
 				) }
 			</div>
 		</>
