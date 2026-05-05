@@ -1,61 +1,111 @@
-import type { BlockAttributes } from '@wordpress/blocks';
-import { parseArgs } from '../utils';
-import BlockControls from './BlockControls';
 import { useBlockProps } from '@wordpress/block-editor';
+import { useState, useEffect } from '@wordpress/element';
+import { parseArgs } from '../utils';
+import BlockControls from './components/BlockControls';
+import Placeholder from './components/Placeholder';
+import VideoPoster from './components/VideoPoster';
+import { LiteVimeoBlockAttributes } from '../types/lite-vimeo';
 
 export default function Edit( props ) {
-	const {
-		videoID,
-		enableTracking,
-		loop,
-		isUnlisted,
-		videoTitle,
-		videoStartAt,
-		customThumbnailURL,
-	} = parseArgs( props.attributes as BlockAttributes );
+	const { videoID, videoHash, videoTitle, customThumbnailURL, videoStartAt } =
+		parseArgs( props.attributes as LiteVimeoBlockAttributes );
+	const [ isPlaying, setIsPlaying ] = useState( false );
+	const [ wrapperClassName, setWrapperClassName ] = useState( 'lv-frame' );
+	const [ iframeSource, setIframeSource ] = useState< string | undefined >(
+		undefined
+	);
 
+	useEffect( () => {
+		if ( ! props.isSelected && isPlaying ) {
+			setIsPlaying( false );
+		}
+	}, [ props.isSelected, isPlaying ] );
+
+	useEffect( () => {
+		if ( isPlaying ) {
+			setWrapperClassName( 'lv-frame lvo-activated' );
+			if ( videoID ) {
+				const params = new URLSearchParams( {
+					autoplay: '1',
+					dnt: '1',
+					hd: '1',
+					autohide: '1',
+					controls: '1',
+					muted: '0',
+				} );
+				if ( videoHash ) {
+					params.set( 'h', videoHash );
+				}
+				if ( props.attributes.loop ) {
+					params.set( 'loop', '1' );
+					params.set( 'muted', '1' );
+				}
+				const path = `/video/${ videoID }?${ params.toString() }`;
+				const srcUrl = new URL( path, 'https://player.vimeo.com/' );
+				if ( videoStartAt ) {
+					srcUrl.hash = `t=${ videoStartAt }`;
+				}
+				setIframeSource( srcUrl.toString() );
+			}
+		} else {
+			setWrapperClassName( 'lv-frame' );
+			setIframeSource( undefined );
+		}
+	}, [ isPlaying, videoID, videoHash, videoStartAt, props.attributes.loop ] );
+	const blockProps = useBlockProps();
 	return (
 		<>
 			<BlockControls { ...props } />
-			<div
-				{ ...useBlockProps( {
-					style: {
-						aspectRatio: '16 / 9',
-						width: '100%',
-					},
-				} ) }
-			>
+			<div { ...blockProps }>
 				{ videoID ? (
-					<lite-vimeo
-						videoid={ videoID }
-						loop={ loop }
-						customPlaceholder={ customThumbnailURL }
-						videoTitle={ videoTitle }
-						start={ `${ videoStartAt }s` }
-						unlisted={ isUnlisted }
-						enableTracking={ enableTracking }
-						style={
-							! props.isSelected
-								? { pointerEvents: 'none' }
-								: undefined
-						}
-					/>
-				) : (
 					<div
-						style={ {
-							aspectRatio: '16/9',
-							border: '2px solid red',
-							backgroundColor: 'rgba( 255, 0, 0, 0.5 )',
-							alignContent: 'center',
-						} }
+						className={ wrapperClassName }
+						style={
+							{
+								'--gradient-opacity':
+									props.attributes.gradientOpacity,
+							} as React.CSSProperties
+						}
 					>
-						<p style={ { textAlign: 'center', fontSize: 40 } }>
-							CNO Lite Vimeo Block
-						</p>
-						<p style={ { textAlign: 'center', fontSize: 20 } }>
-							Video ID is required.
-						</p>
+						{ ! isPlaying && (
+							<>
+								<VideoPoster
+									useCustomThumbnail={
+										props.attributes.useCustomThumbnail
+									}
+									customThumbnailURL={ customThumbnailURL }
+									videoTitle={ videoTitle }
+									context={ {
+										isUnlisted: props.attributes.isUnlisted,
+										videoId: videoID,
+										posterUrlWebp:
+											props.attributes.posterUrlWebp,
+										posterUrlJpeg:
+											props.attributes.posterUrlJpeg,
+									} }
+								/>
+								<button
+									onClick={ () => setIsPlaying( true ) }
+									className="lvo-playbtn"
+									style={
+										{
+											'--button-hover-color':
+												props.attributes.buttonColor,
+										} as React.CSSProperties
+									}
+									aria-label={ `Play: ${ videoTitle }` }
+								/>
+							</>
+						) }
+						<iframe
+							className="lv-iframe"
+							title={ videoTitle }
+							src={ iframeSource }
+							allowFullScreen
+						/>
 					</div>
+				) : (
+					<Placeholder />
 				) }
 			</div>
 		</>

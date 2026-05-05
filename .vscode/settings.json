@@ -1,4 +1,10 @@
 {
+	"[javascript]": {
+		"editor.formatOnSave": false
+	},
+	"[javascriptreact]": {
+		"editor.formatOnSave": false
+	},
 	"[php]": {
 		"editor.autoIndent": "advanced",
 		"editor.defaultFormatter": "wongjn.php-sniffer",
@@ -9,6 +15,15 @@
 		"editor.useTabStops": true,
 		"prettier.tabWidth": 4,
 		"prettier.useTabs": true
+	},
+	"[scss]": {
+		"editor.formatOnSave": true
+	},
+	"[typescript]": {
+		"editor.formatOnSave": false
+	},
+	"[typescriptreact]": {
+		"editor.formatOnSave": false
 	},
 	"[yaml]": {
 		"editor.autoIndent": "advanced",
@@ -27,8 +42,11 @@
 		"autohide",
 		"autoplay",
 		"choctawnationofoklahoma",
+		"classmap",
 		"customplaceholder",
 		"enabletracking",
+		"instantiator",
+		"muplugins",
 		"playbtn",
 		"preconnected",
 		"preconnecting",
@@ -44,7 +62,6 @@
 		"source.fixAll.stylelint": "always"
 	},
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"editor.formatOnSave": false,
 	"eslint.enable": true,
 	"eslint.useESLintClass": true,
 	"eslint.validate": [
