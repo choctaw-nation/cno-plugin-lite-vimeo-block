@@ -14,10 +14,12 @@ import {
 	LiteVimeoContext,
 } from '../types/lite-vimeo';
 import { INTERACTIVITY_STORE } from './consts';
+import deprecated from './deprecated';
 
 registerBlockType( block.name, {
 	icon: video,
 	edit: Edit,
+	deprecated,
 	save: ( { attributes }: { attributes: LiteVimeoBlockAttributes } ) => {
 		const {
 			videoID,
