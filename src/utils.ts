@@ -1,7 +1,6 @@
-import type { BlockAttributes } from '@wordpress/blocks';
-import type { LiteVimeoAttributes } from './types/lite-vimeo';
+import type { LiteVimeoBlockAttributes } from './types/lite-vimeo';
 
-export function parseArgs( attributes: BlockAttributes ): LiteVimeoAttributes {
+export function parseArgs( attributes: LiteVimeoBlockAttributes ) {
 	const {
 		videoID,
 		disableTracking,
@@ -16,7 +15,7 @@ export function parseArgs( attributes: BlockAttributes ): LiteVimeoAttributes {
 
 	// For unlisted videos the videoID is "numericId/hash"; split them apart.
 	let cleanVideoId = videoID as string;
-	let videoHash = '';
+	let videoHash: string | undefined;
 	if (
 		isUnlisted &&
 		typeof videoID === 'string' &&
@@ -28,16 +27,22 @@ export function parseArgs( attributes: BlockAttributes ): LiteVimeoAttributes {
 	return {
 		videoID: cleanVideoId,
 		videoHash,
-		videoStartAt: videoStartAt || 0,
+		videoStartAt,
 		loop: loop ? true : undefined,
 		isUnlisted,
 		videoTitle,
 		autoPlay,
-		customThumbnailURL:
-			isUnlisted && customThumbnailURL !== ''
-				? customThumbnailURL
-				: undefined,
+		customThumbnailURL,
 		enableTracking: false === disableTracking ? true : undefined,
 		showControls: true === playerControls ? true : undefined,
 	};
+}
+
+export function parseVideoId( videoID: string ) {
+	let cleanVideoId = videoID as string;
+	let videoHash: string | undefined;
+	if ( videoID.includes( '/' ) ) {
+		[ cleanVideoId, videoHash ] = videoID.split( '/' );
+	}
+	return { videoId: cleanVideoId, hash: videoHash };
 }

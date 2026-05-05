@@ -1,64 +1,98 @@
-import type { BlockAttribute } from '@wordpress/blocks';
-import { parseArgs } from '../utils';
-import BlockControls from './BlockControls';
 import { useBlockProps } from '@wordpress/block-editor';
+import { useState, useEffect } from '@wordpress/element';
+import { parseArgs } from '../utils';
+import BlockControls from './components/BlockControls';
 import Placeholder from './components/Placeholder';
 import VideoPoster from './components/VideoPoster';
-import { useState, useEffect } from '@wordpress/element';
+import { LiteVimeoBlockAttributes } from '../types/lite-vimeo';
 
 export default function Edit( props ) {
-	const { videoID, videoTitle, customThumbnailURL } = parseArgs(
-		props.attributes as BlockAttribute
-	);
+	const { videoID, videoHash, videoTitle, customThumbnailURL, videoStartAt } =
+		parseArgs( props.attributes as LiteVimeoBlockAttributes );
 	const [ isPlaying, setIsPlaying ] = useState( false );
 	const [ wrapperClassName, setWrapperClassName ] = useState( 'lv-frame' );
 	const [ iframeSource, setIframeSource ] = useState< string | undefined >(
 		undefined
 	);
+
 	useEffect( () => {
-		if ( videoID ) {
-			setIframeSource(
-				`https://player.vimeo.com/video/${ videoID }?autoplay=0&dnt=1`
-			);
+		if ( ! props.isSelected && isPlaying ) {
+			setIsPlaying( false );
 		}
+	}, [ props.isSelected, isPlaying ] );
+
+	useEffect( () => {
 		if ( isPlaying ) {
 			setWrapperClassName( 'lv-frame lvo-activated' );
 			if ( videoID ) {
-				setIframeSource(
-					`https://player.vimeo.com/video/${ videoID }?autoplay=1&dnt=1`
-				);
+				const params = new URLSearchParams( {
+					autoplay: '1',
+					dnt: '1',
+					hd: '1',
+					autohide: '1',
+					controls: '1',
+					muted: '0',
+				} );
+				if ( videoHash ) {
+					params.set( 'h', videoHash );
+				}
+				if ( props.attributes.loop ) {
+					params.set( 'loop', '1' );
+					params.set( 'muted', '1' );
+				}
+				const path = `/video/${ videoID }?${ params.toString() }`;
+				const srcUrl = new URL( path, 'https://player.vimeo.com/' );
+				if ( videoStartAt ) {
+					srcUrl.hash = `t=${ videoStartAt }`;
+				}
+				setIframeSource( srcUrl.toString() );
 			}
 		} else {
 			setWrapperClassName( 'lv-frame' );
-			if ( videoID ) {
-				setIframeSource(
-					`https://player.vimeo.com/video/${ videoID }?autoplay=0&dnt=1`
-				);
-			}
+			setIframeSource( undefined );
 		}
-	}, [ isPlaying, videoID ] );
-
+	}, [ isPlaying, videoID, videoHash, videoStartAt, props.attributes.loop ] );
 	const blockProps = useBlockProps();
 	return (
 		<>
 			<BlockControls { ...props } />
 			<div { ...blockProps }>
 				{ videoID ? (
-					<div className={ wrapperClassName }>
+					<div
+						className={ wrapperClassName }
+						style={
+							{
+								'--gradient-opacity':
+									props.attributes.gradientOpacity,
+							} as React.CSSProperties
+						}
+					>
 						{ ! isPlaying && (
 							<>
 								<VideoPoster
+									useCustomThumbnail={
+										props.attributes.useCustomThumbnail
+									}
 									customThumbnailURL={ customThumbnailURL }
 									videoTitle={ videoTitle }
 									context={ {
+										isUnlisted: props.attributes.isUnlisted,
 										videoId: videoID,
-										playAriaLabel: `Play: ${ videoTitle }`,
+										posterUrlWebp:
+											props.attributes.posterUrlWebp,
+										posterUrlJpeg:
+											props.attributes.posterUrlJpeg,
 									} }
-									scope="editor"
 								/>
 								<button
 									onClick={ () => setIsPlaying( true ) }
 									className="lvo-playbtn"
+									style={
+										{
+											'--button-hover-color':
+												props.attributes.buttonColor,
+										} as React.CSSProperties
+									}
 									aria-label={ `Play: ${ videoTitle }` }
 								/>
 							</>
@@ -67,11 +101,6 @@ export default function Edit( props ) {
 							className="lv-iframe"
 							title={ videoTitle }
 							src={ iframeSource }
-							// style={ {
-							// 	pointerEvents: ! props.isSelected
-							// 		? 'none'
-							// 		: undefined,
-							// } }
 							allowFullScreen
 						/>
 					</div>

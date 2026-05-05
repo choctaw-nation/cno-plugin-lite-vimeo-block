@@ -1,6 +1,6 @@
 import { LiteVimeoContext } from '../../types/lite-vimeo';
 
-export async function loadImagePlaceholder( context: LiteVimeoContext ) {
+export async function fetchVimeoPoster( context: LiteVimeoContext ) {
 	try {
 		const apiUrl = `https://vimeo.com/api/v2/video/${ context.videoId }.json`;
 		const apiResponse = ( await ( await fetch( apiUrl ) ).json() )[ 0 ];

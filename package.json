@@ -31,6 +31,8 @@
 		"@wordpress/block-editor": "^15.18.0",
 		"@wordpress/blocks": "^15.18.0",
 		"@wordpress/components": "^33.0.0",
+		"@wordpress/data": "^10.45.0",
+		"@wordpress/element": "^6.45.0",
 		"@wordpress/eslint-plugin": "^25.1.0",
 		"@wordpress/icons": "^13.0.0",
 		"@wordpress/interactivity": "^6.45.0",

@@ -13,15 +13,14 @@
 	aspect-ratio: 16 / 9;
 
 	.lv-frame {
+		--gradient-color: 0, 0, 0;
+		--gradient-inset: 25%;
+
 		@include fill-block;
 
 		cursor: pointer;
 
 		&::before {
-			--gradient-opacity: 0.15;
-			--gradient-color: 0, 0, 0;
-			--gradient-inset: 25%;
-
 			@include fill-block;
 
 			content: "";
@@ -80,7 +79,7 @@
 		}
 
 		&:hover .lvo-playbtn {
-			background-color: rgb(98 175 237);
+			background-color: var(--button-hover-color);
 			opacity: 1;
 			cursor: pointer;
 		}
@@ -89,20 +88,13 @@
 			@include fill-block;
 
 			border: none;
-			display: none;
 		}
 
 		&.lvo-activated {
 			cursor: unset;
 
-			&::before,
-			.lvo-playbtn,
-			picture {
+			&::before {
 				display: none;
-			}
-
-			.lv-iframe {
-				display: block;
 			}
 		}
 	}

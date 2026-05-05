@@ -19,10 +19,14 @@
 		"spacing": {
 			"margin": [ "top", "bottom" ]
 		},
-		"interactivity":true
+		"interactivity": true
 	},
 	"attributes": {
 		"isUnlisted": {
+			"type": "boolean",
+			"default": false
+		},
+		"useCustomThumbnail": {
 			"type": "boolean",
 			"default": false
 		},
@@ -55,9 +59,25 @@
 			"type": "boolean",
 			"default": false
 		},
+		"autoplayThreshold": {
+			"type": "number",
+			"default": 75
+		},
+		"autoplayMuted": {
+			"type": "boolean",
+			"default": true
+		},
 		"playerControls": {
 			"type": "boolean",
 			"default": false
+		},
+		"buttonColor": {
+			"type": "string",
+			"default": "#62afed"
+		},
+		"gradientOpacity": {
+			"type": "number",
+			"default": ".15"
 		}
 	},
 	"viewScriptModule": "file:./view.ts",

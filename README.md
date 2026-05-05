@@ -1,4 +1,4 @@
-# cno-plugin-lite-vimeo-block
+# CNO Plugin: Lite Vimeo Block
 
 This block forks the [lite-vimeo](https://github.com/choctaw-nation/lite-vimeo) JS and updates it to render correctly within the Block Editor (Gutenberg) and on save.
 
@@ -6,12 +6,14 @@ This block forks the [lite-vimeo](https://github.com/choctaw-nation/lite-vimeo) 
 
 ### v2.0.0 - [May 5, 2026]
 
-- Breaking: Swap shadow-dom based code for @wordpress/interactivity util
+-   Breaking: Swap shadow-dom based code for @wordpress/interactivity
+-   Added: New styles controls
+-   Added: Better autoplay controls
 
 ### v1.2.3 - [March 18, 2026]
 
-- Chore: Update packages
-- Chore: Update deploy workflow
+-   Chore: Update packages
+-   Chore: Update deploy workflow
 
 ### v1.2.2 - [December 10, 2025]
 

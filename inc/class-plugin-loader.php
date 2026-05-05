@@ -59,6 +59,20 @@ class Plugin_Loader {
 	public function load_plugin(): void {
 		add_action( 'init', array( $this, 'register_block' ) );
 		add_action( 'after_setup_theme', array( $this, 'add_image_sizes' ) );
+		add_filter(
+			'image_size_names_choose',
+			function ( $sizes ) {
+				return array_merge(
+					$sizes,
+					array(
+						'4k'    => '4K (3840x2160)',
+						'1080p' => '1080p (1920x1080)',
+						'720p'  => '720p (1280x720)',
+						'480p'  => '480p (854x480)',
+					)
+				);
+			}
+		);
 	}
 
 	/**

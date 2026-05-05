@@ -1,34 +1,43 @@
-import { LiteVimeoContext } from '../../types/lite-vimeo';
+import {
+	LiteVimeoContext,
+	UnlistedLiteVimeoContext,
+} from '../../types/lite-vimeo';
 
-export function buildIframeSrc( context: LiteVimeoContext ): string {
+export function buildIframeSrc(
+	context: LiteVimeoContext & UnlistedLiteVimeoContext
+): string {
 	const {
-		videoId,
-		isUnlisted,
-		hash,
 		loop,
 		enableTracking,
 		autoPlay,
 		showControls,
 		videoStartAt,
+		videoId,
+		hash,
 	} = context;
 
-	let params = 'hd=1&autohide=1&autoplay=1';
-	params += loop ? '&loop=1' : '';
-	params += enableTracking ? '' : '&dnt=1';
-	params += autoPlay ? '&muted=1' : '';
-
-	let controls = true;
-	if ( autoPlay ) {
-		controls = false;
-		if ( showControls ) {
-			controls = true;
-		}
+	const params = new URLSearchParams( {
+		hd: '1',
+		autohide: '1',
+		autoplay: '1',
+		controls: '1',
+	} );
+	if ( hash ) {
+		params.set( 'h', hash );
 	}
-	params += false === controls ? '&controls=0' : '';
+	if ( loop ) {
+		params.set( 'loop', '1' );
+		params.set( 'muted', '1' );
+	}
+	if ( ! enableTracking ) {
+		params.set( 'dnt', '1' );
+	}
+	if ( autoPlay ) {
+		params.set( 'muted', '1' );
+		params.set( 'controls', showControls ? '1' : '0' );
+	}
 
-	const path = `/video/${ videoId }${
-		isUnlisted ? `?h=${ hash }&${ params }` : `?${ params }`
-	}`;
+	const path = `/video/${ videoId }?${ params.toString() }`;
 	const srcUrl = new URL( path, 'https://player.vimeo.com/' );
 	if ( videoStartAt ) {
 		srcUrl.hash = `t=${ videoStartAt }`;
