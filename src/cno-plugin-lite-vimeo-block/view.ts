@@ -40,7 +40,7 @@ export const { state, actions, callbacks } = store( INTERACTIVITY_STORE, {
 
 		addIframe() {
 			const context = getContext<
-				LiteVimeoContext & UnlistedLiteVimeoContext
+				LiteVimeoContext | UnlistedLiteVimeoContext
 			>();
 			if ( context.iframeLoaded ) {
 				return;
@@ -53,7 +53,7 @@ export const { state, actions, callbacks } = store( INTERACTIVITY_STORE, {
 	callbacks: {
 		async init() {
 			const context = getContext<
-				LiteVimeoContext & UnlistedLiteVimeoContext
+				LiteVimeoContext | UnlistedLiteVimeoContext
 			>();
 
 			if ( ! context.useCustomThumbnail ) {
@@ -65,7 +65,7 @@ export const { state, actions, callbacks } = store( INTERACTIVITY_STORE, {
 		},
 		playOnScrollIntoView() {
 			const context = getContext<
-				LiteVimeoContext & UnlistedLiteVimeoContext
+				LiteVimeoContext | UnlistedLiteVimeoContext
 			>();
 			if ( ! context.autoPlay ) {
 				return;
