@@ -50,7 +50,7 @@ interface V1Attributes {
 const v1 = {
 	/**
 	 * v1 attribute definitions (copied verbatim from the v1 block.json).
-	 * Gutenberg uses these to deserialise attributes from saved HTML.
+	 * Gutenberg uses these to deserialize attributes from saved HTML.
 	 */
 	attributes: {
 		isUnlisted: {
@@ -93,7 +93,7 @@ const v1 = {
 
 	/**
 	 * Migrate v1 attributes to v2.
-	 * All existing attributes are kept; new v2 attributes are initialised with
+	 * All existing attributes are kept; new v2 attributes are initialized with
 	 * sensible defaults derived from v1 values where possible.
 	 */
 	migrate( attributes: V1Attributes ) {
@@ -111,7 +111,7 @@ const v1 = {
 
 	/**
 	 * v1 save() — must produce byte-for-byte identical HTML to what the
-	 * main-branch block generated.  Do not modernise or refactor this output.
+	 * main-branch block generated.  Do not modernize or refactor this output.
 	 */
 	save( { attributes }: { attributes: V1Attributes } ) {
 		const {
