@@ -4,7 +4,7 @@ import {
 } from '../../types/lite-vimeo';
 
 export function buildIframeSrc(
-	context: LiteVimeoContext & UnlistedLiteVimeoContext
+	context: LiteVimeoContext | UnlistedLiteVimeoContext
 ): string {
 	const {
 		loop,
@@ -14,6 +14,7 @@ export function buildIframeSrc(
 		videoStartAt,
 		videoId,
 		hash,
+		autoplayMuted,
 	} = context;
 
 	const params = new URLSearchParams( {
@@ -33,7 +34,9 @@ export function buildIframeSrc(
 		params.set( 'dnt', '1' );
 	}
 	if ( autoPlay ) {
-		params.set( 'muted', '1' );
+		if ( autoplayMuted ) {
+			params.set( 'muted', '1' );
+		}
 		params.set( 'controls', showControls ? '1' : '0' );
 	}
 

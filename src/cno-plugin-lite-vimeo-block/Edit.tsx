@@ -85,6 +85,7 @@ export default function Edit( props ) {
 									} }
 								/>
 								<button
+									type="button"
 									onClick={ () => setIsPlaying( true ) }
 									className="lvo-playbtn"
 									style={

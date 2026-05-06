@@ -106,6 +106,7 @@ registerBlockType( block.name, {
 
 					<button
 						className="lvo-playbtn"
+						type="button"
 						style={
 							{
 								'--button-hover-color': attributes.buttonColor,
