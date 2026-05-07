@@ -2,7 +2,7 @@
 <phpunit bootstrap="tests/bootstrap.php" backupGlobals="false" colors="true" convertErrorsToExceptions="true" convertWarningsToExceptions="true" convertNoticesToExceptions="true" convertDeprecationsToExceptions="true" verbose="true">
 	<testsuites>
 		<testsuite name="sample">
-			<directory>tests/</directory>
+			<directory prefix="test-" suffix=".php">tests/</directory>
 		</testsuite>
 	</testsuites>
 	<coverage cacheDirectory=".phpunit.cache">

@@ -18,12 +18,37 @@ class Plugin_Loader {
 	private string $dir_path;
 
 	/**
+	 * The image sizes to register
+	 *
+	 * @var array $sizes
+	 */
+	public array $sizes;
+
+	/**
 	 * Constructor
 	 *
 	 * @param string $dir_path The directory path of the plugin
 	 */
 	public function __construct( string $dir_path ) {
 		$this->dir_path = $dir_path;
+		$this->sizes    = array(
+			'4k'    => array(
+				'width'  => 3840,
+				'height' => 2160,
+			),
+			'1080p' => array(
+				'width'  => 1920,
+				'height' => 1080,
+			),
+			'720p'  => array(
+				'width'  => 1280,
+				'height' => 720,
+			),
+			'480p'  => array(
+				'width'  => 854,
+				'height' => 480,
+			),
+		);
 	}
 
 	/**
@@ -116,25 +141,8 @@ class Plugin_Loader {
 	 * Adds custom image sizes for the plugin
 	 */
 	public function add_image_sizes(): void {
-		$sizes = array(
-			'4k'    => array(
-				'width'  => 3840,
-				'height' => 2160,
-			),
-			'1080p' => array(
-				'width'  => 1920,
-				'height' => 1080,
-			),
-			'720p'  => array(
-				'width'  => 1280,
-				'height' => 720,
-			),
-			'480p'  => array(
-				'width'  => 854,
-				'height' => 480,
-			),
-		);
-		foreach ( $sizes as $handle => $size ) {
+
+		foreach ( $this->sizes as $handle => $size ) {
 			add_image_size( $handle, $size['width'], $size['height'] );
 		}
 	}
