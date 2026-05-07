@@ -191,7 +191,7 @@ export default function BlockControls( {
 					<p>Select a color for the button&apos;s hover state</p>
 					<ColorPalette
 						colors={ [
-							...palette,
+							...( palette ?? [] ),
 							{
 								name: 'Vimeo Blue',
 								color: '#62afed',

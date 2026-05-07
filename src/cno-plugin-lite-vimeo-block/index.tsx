@@ -73,7 +73,7 @@ registerBlockType( block.name, {
 					className="lv-frame"
 					style={
 						{
-							'--gradientOpacity': attributes.gradientOpacity,
+							'--gradient-opacity': attributes.gradientOpacity,
 						} as React.CSSProperties
 					}
 					data-wp-on--click="actions.addIframe"
