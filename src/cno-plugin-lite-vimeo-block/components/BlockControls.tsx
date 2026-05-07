@@ -91,6 +91,19 @@ export default function BlockControls( {
 		( select ) => select( blockEditorStore ).getSettings().colors,
 		[]
 	);
+
+	function getPosterImageUrl( media ) {
+		if ( isBlobURL( media.url ) ) {
+			return media.url;
+		}
+		if ( media.sizes?.[ '1080p' ] ) {
+			return media.sizes[ '1080p' ].url;
+		}
+		if ( media.media_details?.sizes?.[ '1080p' ] ) {
+			return media.media_details.sizes[ '1080p' ].source_url;
+		}
+		return media.url;
+	}
 	return (
 		<>
 			<InspectorControls>
@@ -149,16 +162,7 @@ export default function BlockControls( {
 
 							<MediaPlaceholder
 								onSelect={ ( media ) => {
-									let url;
-									if ( isBlobURL( media.url ) ) {
-										url = media.url;
-									} else {
-										url = media.sizes
-											? media.sizes[ '1080p' ].url
-											: media.media_details.sizes[
-													'1080p'
-											  ].source_url;
-									}
+									const url = getPosterImageUrl( media );
 									setAttributes( {
 										customThumbnailURL: url,
 									} );
