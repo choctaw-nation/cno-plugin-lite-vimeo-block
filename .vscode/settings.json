@@ -25,6 +25,10 @@
 	"[typescriptreact]": {
 		"editor.formatOnSave": false
 	},
+	"[github-actions-workflow]": {
+		"editor.defaultFormatter": "redhat.vscode-yaml",
+		"editor.formatOnSave": false
+	},
 	"[yaml]": {
 		"editor.autoIndent": "advanced",
 		"editor.detectIndentation": true,
