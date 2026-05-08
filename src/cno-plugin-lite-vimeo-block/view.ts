@@ -61,6 +61,8 @@ export const { state, actions, callbacks } = store( INTERACTIVITY_STORE, {
 				if ( ! state.preconnected ) {
 					actions.warmConnections();
 				}
+			} else {
+				context.posterUrlJpeg = context.customThumbnailURL;
 			}
 		},
 		playOnScrollIntoView() {
