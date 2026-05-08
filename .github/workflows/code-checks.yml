@@ -1,7 +1,7 @@
 name: Code Checks
 on:
     pull_request:
-        types: [opened, synchronize, ready_for_review]
+        types: [ opened, synchronize, ready_for_review ]
     workflow_dispatch:
 
 concurrency:
@@ -17,18 +17,18 @@ jobs:
         if: github.event.pull_request.draft == false
         uses: choctaw-nation/shared-github-actions/.github/workflows/lint-if-changed.yml@main
         with:
-            file_extensions: '\.(scss|css)$'
+            file_extensions: "\\.(scss|css)$"
             lint_command: bun run lint:css
 
     lint-js:
         if: github.event.pull_request.draft == false
         uses: choctaw-nation/shared-github-actions/.github/workflows/lint-if-changed.yml@main
         with:
-            file_extensions: '\.(js|jsx|ts|tsx)$'
+            file_extensions: "\\.(js|jsx|ts|tsx)$"
             lint_command: bun run lint:js
 
     final-check:
-        needs: [phpcs, lint-style, lint-js]
+        needs: [ phpcs, lint-style, lint-js ]
         runs-on: ubuntu-latest
         if: always() && github.event.pull_request.draft == false
         steps:

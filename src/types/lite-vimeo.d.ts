@@ -1,35 +1,47 @@
-declare global {
-	namespace JSX {
-		interface IntrinsicElements {
-			'lite-vimeo': React.DetailedHTMLProps<
-				React.HTMLAttributes< HTMLElement > & {
-					videoid?: string;
-					autoload?: boolean | string;
-					autoplay?: boolean | string;
-					loop?: boolean | string;
-					unlisted?: boolean | string;
-					enableTracking?: string;
-					start?: string;
-					videoPlay?: string;
-					videoTitle?: string;
-					customPlaceholder?: string;
-					showControls?: boolean | string;
-				},
-				HTMLElement
-			>;
-		}
-	}
-}
-
-export interface LiteVimeoAttributes {
+export interface LiteVimeoBlockAttributes {
 	isUnlisted: boolean;
-	customThumbnailURL: string | undefined;
+	useCustomThumbnail: boolean;
+	customThumbnailURL?: string;
 	videoID: string;
 	videoTitle: string;
-	loop: true | undefined;
-	enableTracking?: boolean;
+	loop: boolean;
+	disableTracking: boolean;
 	videoStartAt: number;
 	autoPlay: boolean;
-	showControls?: boolean;
-	autoload?: boolean;
+	autoplayThreshold: number;
+	buttonColor: string;
+	autoplayMuted: boolean;
+	playerControls: boolean;
+	gradientOpacity: number;
+}
+
+declare module '*.scss';
+declare module '*.css';
+
+export interface LiteVimeoContext {
+	videoId: string;
+	isUnlisted: boolean;
+	hash?: string;
+	loop: boolean;
+	enableTracking: boolean;
+	videoStartAt: number;
+	autoPlay: boolean;
+	autoplayThreshold: number;
+	autoplayMuted: boolean;
+	showControls: boolean;
+	videoTitle: string;
+	useCustomThumbnail: boolean;
+	customThumbnailURL: string;
+	iframeLoaded: boolean;
+	posterUrlWebp: string;
+	posterUrlJpeg: string;
+	iframeSrc: string | null;
+	playAriaLabel: string;
+}
+
+export interface UnlistedLiteVimeoContext extends LiteVimeoContext {
+	hash: string;
+	isUnlisted: true;
+	useCustomThumbnail: true;
+	customThumbnailURL: string;
 }

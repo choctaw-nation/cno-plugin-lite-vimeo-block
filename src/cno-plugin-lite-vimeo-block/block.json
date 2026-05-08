@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "cno-lite-vimeo/cno-plugin-lite-vimeo-block",
-	"version": "1.1.0",
+	"version": "2.0.0",
 	"title": "CNO Lite Vimeo Block",
 	"category": "embed",
 	"icon": "video-alt3",
@@ -18,10 +18,15 @@
 		"customClassName": true,
 		"spacing": {
 			"margin": [ "top", "bottom" ]
-		}
+		},
+		"interactivity": true
 	},
 	"attributes": {
 		"isUnlisted": {
+			"type": "boolean",
+			"default": false
+		},
+		"useCustomThumbnail": {
 			"type": "boolean",
 			"default": false
 		},
@@ -54,11 +59,28 @@
 			"type": "boolean",
 			"default": false
 		},
+		"autoplayThreshold": {
+			"type": "number",
+			"default": 75
+		},
+		"autoplayMuted": {
+			"type": "boolean",
+			"default": true
+		},
 		"playerControls": {
 			"type": "boolean",
 			"default": false
+		},
+		"buttonColor": {
+			"type": "string",
+			"default": "#62afed"
+		},
+		"gradientOpacity": {
+			"type": "number",
+			"default": 0.15
 		}
 	},
-	"script": "file:./lite-vimeo/index.ts",
+	"viewScriptModule": "file:./view.ts",
+	"style": "file:./style-index.css",
 	"editorScript": "file:./index.tsx"
 }

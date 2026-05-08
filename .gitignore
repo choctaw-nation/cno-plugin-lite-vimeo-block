@@ -30,3 +30,11 @@ vendor/
 
 # dotenv environment variables file
 .env
+
+# Tests
+.wp-tests/
+.phpunit.result.cache
+.phpunit.cache
+
+# Other
+.vscode/launch.json
